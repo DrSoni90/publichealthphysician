@@ -1,0 +1,398 @@
+  *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#0b0b0b;
+  color:white;
+  line-height:1.8;
+
+  min-width:900px;
+  overflow-x:auto;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 8%;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(0,0,0,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #222;
+}
+
+nav h2{
+  font-size:28px;
+}
+
+nav ul{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  transition:0.3s ease;
+}
+
+nav a:hover{
+  color:#999;
+}
+
+/* =========================
+   PROJECT PAGE
+========================= */
+
+.project-page{
+  max-width:1050px;
+  margin:auto;
+  padding:180px 8% 100px;
+}
+
+/* CATEGORY */
+
+.tag{
+  color:#8a8a8a;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:14px;
+  margin-bottom:25px;
+}
+
+/* MAIN TITLE */
+
+.project-main-title{
+  font-size:52px;
+  line-height:1.15;
+  margin-bottom:30px;
+}
+
+/* INTRO */
+
+.project-intro{
+  font-size:20px;
+  color:#cfcfcf;
+  line-height:1.9;
+  margin-bottom:70px;
+  max-width:900px;
+}
+
+/* SECTIONS */
+
+.project-section{
+  margin-bottom:75px;
+}
+
+.project-section h2{
+  font-size:34px;
+  margin-bottom:28px;
+  line-height:1.3;
+}
+
+.project-section p{
+  color:#d2d2d2;
+  margin-bottom:22px;
+  line-height:1.9;
+}
+
+/* LIST */
+
+.project-list{
+  padding-left:24px;
+}
+
+.project-list li{
+  margin-bottom:16px;
+  color:#d5d5d5;
+  line-height:1.8;
+}
+
+/* SKILLS */
+
+.project-skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px;
+}
+
+.project-skills span{
+  background:#161616;
+  border:1px solid #333;
+  padding:12px 18px;
+  border-radius:30px;
+  font-size:14px;
+  color:#d7d7d7;
+  transition:0.3s ease;
+}
+
+.project-skills span:hover{
+  border-color:#666;
+  transform:translateY(-2px);
+}
+
+/* BUTTONS */
+
+.project-buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:50px;
+}
+
+.btn-primary,
+.btn-secondary{
+  padding:14px 28px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s ease;
+}
+
+.btn-primary{
+  background:white;
+  color:black;
+}
+
+.btn-secondary{
+  border:1px solid #444;
+  color:white;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover{
+  transform:translateY(-2px);
+}
+
+
+/* =========================
+   CERTIFICATIONS PAGE
+========================= */
+
+.page-header{
+
+    padding:150px 8% 55px;
+    text-align:center;
+
+}
+
+.page-header h1{
+
+    font-size:48px;
+    margin-bottom:16px;
+    line-height:1.2;
+
+}
+
+.page-header p{
+
+    max-width:720px;
+    margin:auto;
+    color:#bdbdbd;
+    font-size:16px;
+    line-height:1.7;
+
+}
+
+/* =========================
+   CATEGORY SECTION
+========================= */
+
+.category-section{
+
+    padding:0 8% 55px;
+
+}
+
+.category-title{
+
+    font-size:28px;
+    margin-bottom:26px;
+    padding-left:14px;
+    border-left:4px solid #ffffff;
+
+}
+
+/* =========================
+   CERTIFICATE GRID
+========================= */
+
+.certificate-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:22px;
+
+}
+
+/* =========================
+   CERTIFICATE CARD
+========================= */
+
+.certificate-card{
+
+    background:#161616;
+
+    border:1px solid #2c2c2c;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:0.3s ease;
+
+}
+
+.certificate-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#444;
+
+}
+
+.certificate-card img{
+
+    width:100%;
+
+    height:150px;
+
+    object-fit:cover;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+
+}
+
+.certificate-card img:hover{
+
+    transform:scale(1.02);
+
+}
+
+.certificate-content{
+
+    padding:18px;
+
+}
+
+.certificate-content h3{
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+    line-height:1.4;
+
+}
+
+.certificate-content p{
+
+    color:#cfcfcf;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin-bottom:14px;
+
+}
+
+.tag{
+
+    display:inline-block;
+
+    padding:7px 14px;
+
+    border-radius:30px;
+
+    background:#222;
+
+    border:1px solid #333;
+
+    color:#d7d7d7;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.popup{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.94);
+
+    z-index:99999;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+.popup.active{
+
+    display:flex;
+
+}
+
+.popup img{
+
+    max-width:95%;
+
+    max-height:90vh;
+
+    border-radius:14px;
+
+    object-fit:contain;
+
+}
+
+.close-popup{
+
+    position:absolute;
+
+    top:20px;
+
+    right:30px;
+
+    color:white;
+
+    font-size:42px;
+
+    cursor:pointer;
+
+}
