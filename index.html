@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Dr. Mahendra Soni | Digital CV & Portfolio</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- Chart.js for Radar Chart -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     body { font-family: 'Inter', sans-serif; }
-    .custom-scroll::-webkit-scrollbar { width: 6px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
     /* Animated Alive DNA Badge */
     .dna-stage {
       perspective: 400px;
-      width: 44px;
-      height: 70px;
+      width: 40px;
+      height: 64px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
     }
     .dna-basepair {
-      width: 32px;
+      width: 28px;
       height: 4px;
       position: relative;
       transform-style: preserve-3d;
@@ -36,32 +38,31 @@
     .dna-basepair::before, .dna-basepair::after {
       content: '';
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      top: -2px;
+      top: -1.5px;
       box-shadow: 0 0 8px currentColor;
     }
     .dna-basepair::before {
       left: -2px;
-      background: #2dd4bf; /* Teal 400 */
+      background: #2dd4bf;
       color: #2dd4bf;
     }
     .dna-basepair::after {
       right: -2px;
-      background: #38bdf8; /* Sky 400 */
+      background: #38bdf8;
       color: #38bdf8;
     }
     .dna-line {
       position: absolute;
       width: 100%;
       height: 1.5px;
-      top: 1.5px;
+      top: 1px;
       background: linear-gradient(90deg, #2dd4bf, #38bdf8);
       opacity: 0.7;
     }
 
-    /* Staggered Rotation Delays for Helix Motion */
     .dna-bp-1 { animation-delay: 0.0s; }
     .dna-bp-2 { animation-delay: 0.25s; }
     .dna-bp-3 { animation-delay: 0.5s; }
@@ -71,29 +72,80 @@
     .dna-bp-7 { animation-delay: 1.5s; }
 
     @keyframes rotateDNA {
-      0% {
-        transform: rotateY(0deg);
+      0% { transform: rotateY(0deg); }
+      50% { transform: rotateY(180deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    /* Fully Responsive Rotating Competency Wheel */
+    .wheel-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto;
+    }
+    @media (max-width: 400px) {
+      .wheel-container {
+        transform: scale(0.85);
       }
-      50% {
-        transform: rotateY(180deg);
-      }
-      100% {
-        transform: rotateY(360deg);
-      }
+    }
+    .skill-wheel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      animation: spinWheel 26s linear infinite;
+    }
+    .skill-wheel:hover {
+      animation-play-state: paused;
+    }
+    .wheel-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0 0;
+    }
+    .wheel-pill {
+      animation: counterSpin 26s linear infinite;
+      white-space: nowrap;
+    }
+    .skill-wheel:hover .wheel-pill {
+      animation-play-state: paused;
+    }
+
+    /* 8 Nodes positioned evenly at 110px radius */
+    .node-0 { transform: rotate(0deg) translate(110px) translate(-50%, -50%); }
+    .node-1 { transform: rotate(45deg) translate(110px) translate(-50%, -50%); }
+    .node-2 { transform: rotate(90deg) translate(110px) translate(-50%, -50%); }
+    .node-3 { transform: rotate(135deg) translate(110px) translate(-50%, -50%); }
+    .node-4 { transform: rotate(180deg) translate(110px) translate(-50%, -50%); }
+    .node-5 { transform: rotate(225deg) translate(110px) translate(-50%, -50%); }
+    .node-6 { transform: rotate(270deg) translate(110px) translate(-50%, -50%); }
+    .node-7 { transform: rotate(315deg) translate(110px) translate(-50%, -50%); }
+
+    @keyframes spinWheel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes counterSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
     }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased">
-  <div class="flex flex-col lg:flex-row min-h-screen">
+<body class="bg-slate-100 text-slate-800 antialiased selection:bg-teal-500 selection:text-white">
+  
+  <div class="min-h-screen flex flex-col lg:flex-row max-w-[1920px] mx-auto">
     
-    <!-- LEFT SIDEBAR -->
-    <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-6 lg:fixed lg:h-screen lg:overflow-y-auto">
+    <!-- RESPONSIVE SIDEBAR / TOPBAR -->
+    <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-5 sm:p-6 lg:fixed lg:h-screen lg:overflow-y-auto z-20 shadow-xl">
       <div>
         
-        <!-- Profile Header with Alive DNA Emblem at Top -->
-        <div class="flex flex-col items-center text-center pb-6 border-b border-[#006a80]">
+        <!-- Header with Alive DNA Emblem -->
+        <div class="flex flex-col items-center text-center pb-5 border-b border-[#006a80]">
           
-          <!-- Alive Glowing DNA Emblem -->
           <div class="mb-3 px-3 py-2 bg-slate-900/40 border border-teal-500/30 rounded-2xl flex items-center gap-3 shadow-lg backdrop-blur-sm">
             <div class="dna-stage">
               <div class="dna-basepair dna-bp-1"><div class="dna-line"></div></div>
@@ -113,114 +165,114 @@
             </div>
           </div>
 
-          <h1 class="text-xl font-bold tracking-tight mt-2">DR. MAHENDRA SONI</h1>
-          <p class="text-xs text-teal-200 mt-1 font-medium">MBBS, MD (Community Medicine)</p>
-          <span class="inline-block mt-3 px-3 py-1 bg-teal-500/20 text-teal-200 border border-teal-400/30 text-[11px] font-semibold rounded-full">
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight mt-1 text-white">DR. MAHENDRA SONI</h1>
+          <p class="text-xs text-teal-200 mt-0.5 font-medium">MBBS, MD (Community Medicine)</p>
+          <span class="inline-block mt-2.5 px-3 py-1 bg-teal-500/20 text-teal-200 border border-teal-400/30 text-[11px] font-semibold rounded-full text-center">
             WHO - Surveillance Medical Officer
           </span>
         </div>
 
-        <!-- Quick Info -->
-        <div class="py-5 text-xs space-y-2.5 border-b border-[#006a80] text-teal-100">
+        <!-- Quick Contacts (Dialable on phone) -->
+        <div class="py-4 text-xs space-y-2 border-b border-[#006a80] text-teal-100">
           <div class="flex items-center gap-3">
-            <i class="fa-solid fa-location-dot text-teal-300 w-4"></i>
+            <i class="fa-solid fa-location-dot text-teal-300 w-4 text-center"></i>
             <span>Varanasi, Uttar Pradesh, India</span>
           </div>
           <div class="flex items-center gap-3">
-            <i class="fa-solid fa-envelope text-teal-300 w-4"></i>
-            <a href="mailto:mahendra3632399@gmail.com" class="hover:underline truncate">mahendra3632399@gmail.com</a>
+            <i class="fa-solid fa-envelope text-teal-300 w-4 text-center"></i>
+            <a href="mailto:mahendra3632399@gmail.com" class="hover:underline hover:text-white truncate transition">mahendra3632399@gmail.com</a>
           </div>
           <div class="flex items-center gap-3">
-            <i class="fa-solid fa-phone text-teal-300 w-4"></i>
-            <a href="tel:+917999899363" class="hover:underline hover:text-white transition">+91-7999899363</a>
+            <i class="fa-solid fa-phone text-teal-300 w-4 text-center"></i>
+            <a href="tel:+917999899363" class="hover:underline hover:text-white font-semibold transition">+91-7999899363</a>
           </div>
         </div>
 
-        <!-- Navigation Menu -->
-        <nav class="py-5 space-y-1 text-sm font-medium">
+        <!-- Smooth Nav Menu -->
+        <nav class="py-4 space-y-1 text-xs sm:text-sm font-medium">
           <a href="#about" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-circle-info w-5 text-teal-300"></i> Executive Summary
+            <i class="fa-solid fa-circle-info w-4 text-teal-300"></i> Executive Summary
           </a>
           <a href="#experience" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-briefcase w-5 text-teal-300"></i> Experience & Timeline
+            <i class="fa-solid fa-briefcase w-4 text-teal-300"></i> Experience & Timeline
           </a>
           <a href="#skills" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-chart-pie w-5 text-teal-300"></i> Core Competencies
+            <i class="fa-solid fa-arrows-spin w-4 text-teal-300"></i> Competency Wheel
           </a>
           <a href="#achievements" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-award w-5 text-teal-300"></i> Achievements & Pubs
+            <i class="fa-solid fa-award w-4 text-teal-300"></i> Achievements & Pubs
           </a>
         </nav>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="pt-4 border-t border-[#006a80] space-y-2">
-        <a href="Resume for github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-semibold rounded-lg text-xs shadow transition">
+      <!-- Quick Action Buttons -->
+      <div class="pt-4 border-t border-[#006a80] space-y-2 mt-4 lg:mt-0">
+        <a href="Resume%20for%20github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold rounded-lg text-xs shadow transition active:scale-[0.98]">
           <i class="fa-solid fa-file-arrow-down"></i> View Official CV
         </a>
-        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20">
+        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
           <i class="fa-solid fa-paper-plane"></i> Contact Me
         </a>
       </div>
     </aside>
 
-    <!-- MAIN DASHBOARD CONTENT -->
-    <main class="w-full lg:ml-80 p-6 lg:p-10 space-y-10 custom-scroll">
+    <!-- MAIN RESPONSIVE DASHBOARD -->
+    <main class="w-full lg:ml-80 p-4 sm:p-6 lg:p-10 space-y-8 lg:space-y-10">
       
-      <!-- Executive Summary -->
-      <section id="about" class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
-          <h2 class="text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
+      <!-- Executive Profile -->
+      <section id="about" class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2">
+          <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
             <i class="fa-solid fa-shield-virus text-[#004d61]"></i> Executive Profile
           </h2>
-          <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
-            9+ Years Experience
+          <span class="inline-block self-start sm:self-auto text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
+            9+ Years Dedicated Leadership
           </span>
         </div>
-        <p class="mt-4 text-sm leading-relaxed text-slate-600">
+        <p class="mt-4 text-xs sm:text-sm leading-relaxed text-slate-600">
           Public Health Physician & Epidemiologist with over 9 years of dedicated field leadership across disease surveillance, outbreak investigation, routine immunization, and health systems strengthening. Actively serving as Surveillance Medical Officer (WHO-NPSN) driving India's Polio Eradication Programme, Vaccine-Preventable Disease (VPD) surveillance, wastewater epidemiology, and data-driven healthcare policy.
         </p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5 pt-5 border-t border-slate-100 text-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 mt-5 pt-5 border-t border-slate-100 text-center">
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-lg font-bold text-[#004d61]">WHO-NPSN</div>
-            <div class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Surveillance Lead</div>
+            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">WHO-NPSN</div>
+            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Surveillance Lead</div>
           </div>
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-lg font-bold text-[#004d61]">Gavi Districts</div>
-            <div class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Immunization Ops</div>
+            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">Gavi Districts</div>
+            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Immunization Ops</div>
           </div>
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-lg font-bold text-[#004d61]">VDPV3 & AFP</div>
-            <div class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Outbreak Control</div>
+            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">VDPV3 & AFP</div>
+            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Outbreak Control</div>
           </div>
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-lg font-bold text-[#004d61]">AI & Analytics</div>
-            <div class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">96% NBEMS Certified</div>
+            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">AI & Analytics</div>
+            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">96% NBEMS Certified</div>
           </div>
         </div>
       </section>
 
-      <!-- Experience & Timeline + Radar Chart Grid -->
-      <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+      <!-- Experience & Rotating Matrix Section -->
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 sm:gap-8">
         
-        <!-- Experience Timeline (Left 7 Cols) -->
-        <section id="experience" class="xl:col-span-7 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-6">
-          <h2 class="text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
+        <!-- Experience Timeline -->
+        <section id="experience" class="xl:col-span-7 bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm space-y-6">
+          <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
             <i class="fa-solid fa-timeline text-[#004d61]"></i> Professional Experience
           </h2>
 
-          <div class="relative border-l-2 border-[#004d61]/30 ml-3.5 space-y-8 pl-6">
+          <div class="relative border-l-2 border-[#004d61]/30 ml-2.5 sm:ml-3.5 space-y-6 sm:space-y-8 pl-4 sm:pl-6">
             
             <!-- WHO SMO -->
             <div class="relative group">
-              <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#004d61] border-2 border-white shadow"></div>
-              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 transition hover:border-[#004d61]/40">
+              <div class="absolute -left-[23px] sm:-left-[31px] top-1.5 w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-[#004d61] border-2 border-white shadow"></div>
+              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200/60 transition hover:border-[#004d61]/40">
                 <div class="flex justify-between items-start flex-wrap gap-1">
-                  <h3 class="font-bold text-slate-900 text-sm">Surveillance Medical Officer (SMO)</h3>
-                  <span class="text-[11px] font-semibold bg-[#004d61] text-white px-2 py-0.5 rounded">Current</span>
+                  <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Surveillance Medical Officer (SMO)</h3>
+                  <span class="text-[10px] sm:text-[11px] font-semibold bg-[#004d61] text-white px-2 py-0.5 rounded">Current</span>
                 </div>
                 <div class="text-xs text-teal-700 font-semibold mt-0.5">World Health Organization (WHO-NPSN)</div>
-                <ul class="mt-3 text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                <ul class="mt-2.5 text-xs text-slate-600 space-y-1.5 list-disc list-inside">
                   <li>Lead AFP, VPD, and Wastewater/Environmental Surveillance.</li>
                   <li>Spearhead outbreak response and VDPV3 epidemiological investigations.</li>
                   <li>Coordinate Routine Immunization & HRA validations in Gavi-supported districts.</li>
@@ -231,9 +283,9 @@
 
             <!-- Senior Resident -->
             <div class="relative group">
-              <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-slate-300 border-2 border-white"></div>
-              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60">
-                <h3 class="font-bold text-slate-900 text-sm">Senior Resident (Community Medicine)</h3>
+              <div class="absolute -left-[23px] sm:-left-[31px] top-1.5 w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-slate-300 border-2 border-white"></div>
+              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200/60">
+                <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Senior Resident (Community Medicine)</h3>
                 <div class="text-xs text-slate-500 font-semibold mt-0.5">R.D. Gardi Medical College, Ujjain</div>
                 <p class="mt-2 text-xs text-slate-600">Conducted undergraduate/postgraduate training, field surveys, and public health operational research.</p>
               </div>
@@ -241,9 +293,9 @@
 
             <!-- Medical Officer -->
             <div class="relative group">
-              <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-slate-300 border-2 border-white"></div>
-              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60">
-                <h3 class="font-bold text-slate-900 text-sm">Medical Officer (NRC & Clinical)</h3>
+              <div class="absolute -left-[23px] sm:-left-[31px] top-1.5 w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-slate-300 border-2 border-white"></div>
+              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200/60">
+                <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Medical Officer (NRC & Clinical)</h3>
                 <div class="text-xs text-slate-500 font-semibold mt-0.5">District Hospital Agar Malwa & Ujjain Charitable Trust</div>
                 <p class="mt-2 text-xs text-slate-600">Managed Nutrition Rehabilitation Centre (NRC), COVID-19 isolation/supervision, and critical clinical care.</p>
               </div>
@@ -252,19 +304,76 @@
           </div>
         </section>
 
-        <!-- Radar Chart + Skills (Right 5 Cols) -->
+        <!-- Dynamic Rotating Competency Wheel -->
         <section id="skills" class="xl:col-span-5 flex flex-col gap-6">
-          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col items-center">
-            <h2 class="text-base font-bold text-slate-900 tracking-wide uppercase self-start flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-chart-line text-[#004d61]"></i> Competency Matrix
-            </h2>
-            <div class="w-full max-w-[280px]">
-              <canvas id="skillsRadar"></canvas>
+          <div class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col items-center">
+            <div class="w-full flex items-center justify-between mb-2">
+              <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
+                <i class="fa-solid fa-arrows-spin text-[#004d61]"></i> Competency Wheel
+              </h2>
+              <span class="text-[10px] text-slate-400 font-medium italic"><i class="fa-regular fa-hand-pointer"></i> Tap/Hover to pause</span>
+            </div>
+
+            <!-- Responsive Wheel Container -->
+            <div class="wheel-container my-4">
+              <div class="absolute inset-0 rounded-full border border-slate-200/80"></div>
+              <div class="absolute inset-6 rounded-full border border-dashed border-teal-300/60"></div>
+              <div class="absolute inset-16 rounded-full border border-slate-200"></div>
+
+              <!-- Center Core -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#004d61] text-white flex flex-col items-center justify-center shadow-lg border-2 border-teal-300 z-10 text-center p-1">
+                <i class="fa-solid fa-dna text-teal-300 text-sm mb-0.5"></i>
+                <span class="text-[9px] font-bold leading-tight uppercase">Public Health Matrix</span>
+              </div>
+
+              <!-- Orbiting Nodes -->
+              <div class="skill-wheel">
+                <div class="wheel-node node-0">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition">
+                    Epidemiology
+                  </div>
+                </div>
+                <div class="wheel-node node-1">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition">
+                    VPD Surveillance
+                  </div>
+                </div>
+                <div class="wheel-node node-2">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition">
+                    Wastewater & ES
+                  </div>
+                </div>
+                <div class="wheel-node node-3">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition">
+                    Data Analytics
+                  </div>
+                </div>
+                <div class="wheel-node node-4">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition">
+                    AI in Health
+                  </div>
+                </div>
+                <div class="wheel-node node-5">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition">
+                    Field Ops & AFP
+                  </div>
+                </div>
+                <div class="wheel-node node-6">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition">
+                    Routine Immunization
+                  </div>
+                </div>
+                <div class="wheel-node node-7">
+                  <div class="wheel-pill px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition">
+                    Health Systems
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Technical Chips -->
-          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <!-- Tools Chips -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm">
             <h3 class="text-xs font-bold text-slate-500 tracking-wider uppercase mb-3">Tools & Systems</h3>
             <div class="flex flex-wrap gap-1.5 text-xs font-medium text-slate-700">
               <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">SPSS</span>
@@ -278,15 +387,15 @@
 
       </div>
 
-      <!-- Education, Publications & Certifications -->
-      <section id="achievements" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Education, Publications & Clickable Certifications -->
+      <section id="achievements" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         
         <!-- Education -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
-          <h3 class="font-bold text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
             <i class="fa-solid fa-graduation-cap"></i> Education
           </h3>
-          <div class="text-xs space-y-2">
+          <div class="text-xs space-y-2.5">
             <div>
               <div class="font-semibold text-slate-800">MD - Community Medicine</div>
               <div class="text-slate-500">NSCB Medical College, Jabalpur</div>
@@ -299,8 +408,8 @@
         </div>
 
         <!-- Publications -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
-          <h3 class="font-bold text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
             <i class="fa-solid fa-book-journal-whills"></i> Publications
           </h3>
           <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside">
@@ -309,16 +418,34 @@
           </ul>
         </div>
 
-        <!-- Certifications -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
-          <h3 class="font-bold text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
-            <i class="fa-solid fa-certificate"></i> Certifications
+        <!-- Verified Certifications (Clickable repository links) -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3 md:col-span-2 xl:col-span-1">
+          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
+            <i class="fa-solid fa-certificate"></i> Verified Certifications
           </h3>
-          <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
-            <li>Artificial Intelligence in Healthcare (NBEMS - 96%)</li>
-            <li>Mathematical Modelling for Infectious Diseases</li>
-            <li>ArcView GIS Spatial Analysis</li>
-            <li>WHO OpenWHO NCD & Epidemic Control</li>
+          <ul class="text-xs text-slate-600 space-y-2">
+            <li>
+              <a href="National%20science%20day%20celebration.pdf" target="_blank" class="text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-1 rounded hover:bg-slate-50">
+                <span><i class="fa-solid fa-file-pdf text-red-500 mr-1.5"></i> National Science Day Certificate</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-teal-600"></i>
+              </a>
+            </li>
+            <li class="flex items-center justify-between text-slate-700 p-1">
+              <span><i class="fa-solid fa-award text-amber-500 mr-1.5"></i> AI in Healthcare (NBEMS - 96%)</span>
+              <span class="text-[10px] text-slate-400 font-medium">Verified</span>
+            </li>
+            <li class="flex items-center justify-between text-slate-700 p-1">
+              <span><i class="fa-solid fa-award text-teal-600 mr-1.5"></i> Infectious Disease Modelling</span>
+              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
+            </li>
+            <li class="flex items-center justify-between text-slate-700 p-1">
+              <span><i class="fa-solid fa-award text-[#004d61] mr-1.5"></i> ArcView GIS Spatial Analysis</span>
+              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
+            </li>
+            <li class="flex items-center justify-between text-slate-700 p-1">
+              <span><i class="fa-solid fa-award text-blue-500 mr-1.5"></i> WHO OpenWHO Epidemic Control</span>
+              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
+            </li>
           </ul>
         </div>
 
@@ -326,45 +453,5 @@
 
     </main>
   </div>
-
-  <!-- Radar Chart Script -->
-  <script>
-    const ctx = document.getElementById('skillsRadar').getContext('2d');
-    new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: ['Epidemiology', 'VPD Surveillance', 'Data Analytics', 'Field Ops', 'Policy Advocacy', 'AI in Health'],
-        datasets: [{
-          label: 'Proficiency Level',
-          data: [95, 98, 90, 95, 88, 92],
-          backgroundColor: 'rgba(0, 77, 97, 0.2)',
-          borderColor: '#004d61',
-          pointBackgroundColor: '#14b8a6',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: '#14b8a6',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        scales: {
-          r: {
-            angleLines: { color: '#e2e8f0' },
-            grid: { color: '#e2e8f0' },
-            suggestedMin: 50,
-            suggestedMax: 100,
-            ticks: { display: false },
-            pointLabels: {
-              font: { size: 10, weight: '600' },
-              color: '#334155'
-            }
-          }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
-  </script>
 </body>
 </html>
