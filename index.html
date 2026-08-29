@@ -15,6 +15,72 @@
     body { font-family: 'Inter', sans-serif; }
     .custom-scroll::-webkit-scrollbar { width: 6px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+    /* Animated Alive DNA Badge */
+    .dna-stage {
+      perspective: 400px;
+      width: 44px;
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dna-basepair {
+      width: 32px;
+      height: 4px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateDNA 3s linear infinite;
+    }
+    .dna-basepair::before, .dna-basepair::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      top: -2px;
+      box-shadow: 0 0 8px currentColor;
+    }
+    .dna-basepair::before {
+      left: -2px;
+      background: #2dd4bf; /* Teal 400 */
+      color: #2dd4bf;
+    }
+    .dna-basepair::after {
+      right: -2px;
+      background: #38bdf8; /* Sky 400 */
+      color: #38bdf8;
+    }
+    .dna-line {
+      position: absolute;
+      width: 100%;
+      height: 1.5px;
+      top: 1.5px;
+      background: linear-gradient(90deg, #2dd4bf, #38bdf8);
+      opacity: 0.7;
+    }
+
+    /* Staggered Rotation Delays for Helix Motion */
+    .dna-bp-1 { animation-delay: 0.0s; }
+    .dna-bp-2 { animation-delay: 0.25s; }
+    .dna-bp-3 { animation-delay: 0.5s; }
+    .dna-bp-4 { animation-delay: 0.75s; }
+    .dna-bp-5 { animation-delay: 1.0s; }
+    .dna-bp-6 { animation-delay: 1.25s; }
+    .dna-bp-7 { animation-delay: 1.5s; }
+
+    @keyframes rotateDNA {
+      0% {
+        transform: rotateY(0deg);
+      }
+      50% {
+        transform: rotateY(180deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased">
@@ -23,12 +89,31 @@
     <!-- LEFT SIDEBAR -->
     <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-6 lg:fixed lg:h-screen lg:overflow-y-auto">
       <div>
-        <!-- Profile Header -->
+        
+        <!-- Profile Header with Alive DNA Emblem at Top -->
         <div class="flex flex-col items-center text-center pb-6 border-b border-[#006a80]">
-          <div class="w-28 h-28 rounded-full bg-white/10 border-2 border-teal-300 flex items-center justify-center text-4xl text-teal-300 font-bold mb-4 shadow-inner">
-            <i class="fa-solid fa-user-doctor"></i>
+          
+          <!-- Alive Glowing DNA Emblem -->
+          <div class="mb-3 px-3 py-2 bg-slate-900/40 border border-teal-500/30 rounded-2xl flex items-center gap-3 shadow-lg backdrop-blur-sm">
+            <div class="dna-stage">
+              <div class="dna-basepair dna-bp-1"><div class="dna-line"></div></div>
+              <div class="dna-basepair dna-bp-2"><div class="dna-line"></div></div>
+              <div class="dna-basepair dna-bp-3"><div class="dna-line"></div></div>
+              <div class="dna-basepair dna-bp-4"><div class="dna-line"></div></div>
+              <div class="dna-basepair dna-bp-5"><div class="dna-line"></div></div>
+              <div class="dna-basepair dna-bp-6"><div class="dna-line"></div></div>
+              <div class="dna-basepair dna-bp-7"><div class="dna-line"></div></div>
+            </div>
+            <div class="text-left pr-1">
+              <span class="block text-[10px] uppercase font-bold tracking-widest text-teal-300">Genomics &</span>
+              <span class="block text-xs font-bold text-white tracking-wide">Public Health</span>
+              <span class="inline-flex items-center gap-1 text-[9px] text-teal-200 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Surveillance
+              </span>
+            </div>
           </div>
-          <h1 class="text-xl font-bold tracking-tight">DR. MAHENDRA SONI</h1>
+
+          <h1 class="text-xl font-bold tracking-tight mt-2">DR. MAHENDRA SONI</h1>
           <p class="text-xs text-teal-200 mt-1 font-medium">MBBS, MD (Community Medicine)</p>
           <span class="inline-block mt-3 px-3 py-1 bg-teal-500/20 text-teal-200 border border-teal-400/30 text-[11px] font-semibold rounded-full">
             WHO - Surveillance Medical Officer
@@ -171,7 +256,7 @@
         <section id="skills" class="xl:col-span-5 flex flex-col gap-6">
           <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col items-center">
             <h2 class="text-base font-bold text-slate-900 tracking-wide uppercase self-start flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-radar text-[#004d61]"></i> Competency Matrix
+              <i class="fa-solid fa-chart-line text-[#004d61]"></i> Competency Matrix
             </h2>
             <div class="w-full max-w-[280px]">
               <canvas id="skillsRadar"></canvas>
