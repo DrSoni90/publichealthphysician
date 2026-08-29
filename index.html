@@ -1,509 +1,558 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dr. Mahendra Soni | Digital CV & Portfolio</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- Chart.js for Matrix -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f5f9; }
-    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    /* Alive DNA Helix */
-    .dna-stage {
-      perspective: 400px;
-      width: 40px;
-      height: 64px;
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --bg-light: #f8fafc;
+      --card-light: #ffffff;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --accent-red: #ef4444;
+      --accent-red-glow: rgba(239, 68, 68, 0.4);
+      --teal-primary: #0d9488;
+      --teal-dark: #115e59;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- Left Sidebar --- */
+    .sidebar {
+      width: 320px;
+      background-color: #0d4a52;
+      color: #ffffff;
+      padding: 30px 24px;
       display: flex;
       flex-direction: column;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    /* Live Surveillance Badge with Red Alive Symbol */
+    .badge-live-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .alive-symbol-box {
+      width: 44px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .alive-caduceus-svg {
+      width: 100%;
+      height: 100%;
+      animation: pulse-alive 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-alive {
+      0% {
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 3px rgba(255, 68, 68, 0.6));
+      }
+      50% {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 10px rgba(255, 30, 30, 0.95));
+      }
+      100% {
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 3px rgba(255, 68, 68, 0.6));
+      }
+    }
+
+    .live-ping-dot {
+      animation: ping-dot 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes ping-dot {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .badge-texts {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .badge-texts .title-row {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .badge-texts .live-status {
+      font-size: 0.72rem;
+      color: #ff8080;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .badge-texts .live-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: #ff3333;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 6px #ff3333;
+    }
+
+    .doctor-meta h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .doctor-meta .degrees {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+    }
+
+    .doctor-meta .role-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #5eead4;
+      border: 1px solid rgba(94, 234, 212, 0.3);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 0;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-item i {
+      color: #5eead4;
+      width: 16px;
+      text-align: center;
+    }
+
+    .contact-item a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+
+    .nav-btn i {
+      width: 18px;
+      color: #5eead4;
+    }
+
+    .action-buttons {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: opacity 0.2s;
+    }
+
+    .cta-primary {
+      background-color: #0f766e;
+      color: #ffffff;
+      border: 1px solid #14b8a6;
+    }
+
+    .cta-secondary {
+      background-color: #115e59;
+      color: #ffffff;
+    }
+
+    /* --- Main Content Area --- */
+    .main-content {
+      flex: 1;
+      padding: 36px 40px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .content-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
     }
-    .dna-basepair {
-      width: 28px;
-      height: 4px;
+
+    .section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tag-badge {
+      background: #f1f5f9;
+      color: #0f766e;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .profile-summary {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #475569;
+      margin-bottom: 24px;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .metric-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .metric-card h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0f766e;
+      margin-bottom: 4px;
+    }
+
+    .metric-card p {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Experience Timeline */
+    .timeline-item {
       position: relative;
-      transform-style: preserve-3d;
-      animation: rotateDNA 3s linear infinite;
+      padding-left: 28px;
+      border-left: 2px solid #0f766e;
+      margin-top: 10px;
     }
-    .dna-basepair::before, .dna-basepair::after {
-      content: '';
+
+    .timeline-item::before {
+      content: "";
       position: absolute;
-      width: 7px;
-      height: 7px;
+      left: -7px;
+      top: 0;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      top: -1.5px;
-      box-shadow: 0 0 8px currentColor;
-    }
-    .dna-basepair::before {
-      left: -2px;
-      background: #2dd4bf;
-      color: #2dd4bf;
-    }
-    .dna-basepair::after {
-      right: -2px;
-      background: #38bdf8;
-      color: #38bdf8;
-    }
-    .dna-line {
-      position: absolute;
-      width: 100%;
-      height: 1.5px;
-      top: 1px;
-      background: linear-gradient(90deg, #2dd4bf, #38bdf8);
-      opacity: 0.7;
+      background-color: #0f766e;
     }
 
-    .dna-bp-1 { animation-delay: 0.0s; }
-    .dna-bp-2 { animation-delay: 0.25s; }
-    .dna-bp-3 { animation-delay: 0.5s; }
-    .dna-bp-4 { animation-delay: 0.75s; }
-    .dna-bp-5 { animation-delay: 1.0s; }
-    .dna-bp-6 { animation-delay: 1.25s; }
-    .dna-bp-7 { animation-delay: 1.5s; }
-
-    @keyframes rotateDNA {
-      0% { transform: rotateY(0deg); }
-      50% { transform: rotateY(180deg); }
-      100% { transform: rotateY(360deg); }
+    .timeline-role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
     }
 
-    /* Radar Live Scan Sweep */
-    .radar-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1.25rem;
-    }
-    .radar-beam {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 150px;
-      height: 150px;
-      transform-origin: top left;
-      background: conic-gradient(from 0deg, rgba(20, 184, 166, 0.25) 0deg, rgba(20, 184, 166, 0) 65deg);
-      border-radius: 100% 0 0 0;
-      animation: radarSweep 3.5s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes radarSweep {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .timeline-role-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e293b;
     }
 
-    /* Modal Styling */
-    .modal-active {
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
+    .current-badge {
+      background-color: #0f766e;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
     }
-    .modal-box {
-      transition: transform 0.25s ease-out;
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: #0d9488;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
-    .modal-active .modal-box {
-      transform: scale(1) translateY(0) !important;
+
+    .timeline-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      color: #475569;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased selection:bg-teal-500 selection:text-white">
-  
-  <div class="min-h-screen flex flex-col lg:flex-row max-w-[1920px] mx-auto">
-    
-    <!-- SIDEBAR -->
-    <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-5 sm:p-6 lg:fixed lg:h-screen lg:overflow-y-auto z-20 shadow-xl">
-      <div>
-        
-        <!-- Header with Alive DNA -->
-        <div class="flex flex-col items-center text-center pb-5 border-b border-[#006a80]">
-          <div class="mb-3 px-3 py-2 bg-slate-900/40 border border-teal-500/30 rounded-2xl flex items-center gap-3 shadow-lg backdrop-blur-sm">
-            <div class="dna-stage">
-              <div class="dna-basepair dna-bp-1"><div class="dna-line"></div></div>
-              <div class="dna-basepair dna-bp-2"><div class="dna-line"></div></div>
-              <div class="dna-basepair dna-bp-3"><div class="dna-line"></div></div>
-              <div class="dna-basepair dna-bp-4"><div class="dna-line"></div></div>
-              <div class="dna-basepair dna-bp-5"><div class="dna-line"></div></div>
-              <div class="dna-basepair dna-bp-6"><div class="dna-line"></div></div>
-              <div class="dna-basepair dna-bp-7"><div class="dna-line"></div></div>
-            </div>
-            <div class="text-left pr-1">
-              <span class="block text-[10px] uppercase font-bold tracking-widest text-teal-300">Genomics &</span>
-              <span class="block text-xs font-bold text-white tracking-wide">Public Health</span>
-              <span class="inline-flex items-center gap-1 text-[9px] text-teal-200 mt-0.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Surveillance
-              </span>
-            </div>
-          </div>
+<body>
 
-          <h1 class="text-lg sm:text-xl font-bold tracking-tight mt-1 text-white">DR. MAHENDRA SONI</h1>
-          <p class="text-xs text-teal-200 mt-0.5 font-medium">MBBS, MD (Community Medicine)</p>
-          <span class="inline-block mt-2.5 px-3 py-1 bg-teal-500/20 text-teal-200 border border-teal-400/30 text-[11px] font-semibold rounded-full text-center">
-            WHO - Surveillance Medical Officer
-          </span>
-        </div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <!-- Live Genomics & Public Health Badge with Pulsing Red Alive Caduceus -->
+    <div class="badge-live-container">
+      <div class="alive-symbol-box">
+        <svg class="alive-caduceus-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff4d4d" />
+              <stop offset="50%" stop-color="#ef4444" />
+              <stop offset="100%" stop-color="#990000" />
+            </linearGradient>
+          </defs>
 
-        <!-- Contact Info -->
-        <div class="py-4 text-xs space-y-2 border-b border-[#006a80] text-teal-100">
-          <div class="flex items-center gap-3">
-            <i class="fa-solid fa-location-dot text-teal-300 w-4 text-center"></i>
-            <span>Varanasi, Uttar Pradesh, India</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <i class="fa-solid fa-envelope text-teal-300 w-4 text-center"></i>
-            <a href="mailto:mahendra3632399@gmail.com" class="hover:underline hover:text-white truncate transition">mahendra3632399@gmail.com</a>
-          </div>
-          <div class="flex items-center gap-3">
-            <i class="fa-solid fa-phone text-teal-300 w-4 text-center"></i>
-            <a href="tel:+917999899363" class="hover:underline hover:text-white font-semibold transition">+91-7999899363</a>
-          </div>
-        </div>
+          <!-- Central Staff -->
+          <line x1="50" y1="20" x2="50" y2="105" stroke="url(#redGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow-red)" />
+          <circle cx="50" cy="18" r="5.5" fill="url(#redGrad)" filter="url(#glow-red)" />
 
-        <!-- Navigation Menu -->
-        <nav class="py-4 space-y-1 text-xs sm:text-sm font-medium">
-          <a href="#about" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-circle-info w-4 text-teal-300"></i> Executive Summary
-          </a>
-          <a href="#experience" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-briefcase w-4 text-teal-300"></i> Experience & Timeline
-          </a>
-          <a href="#skills" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-chart-pie w-4 text-teal-300"></i> Competency Matrix
-          </a>
-          <a href="#achievements" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-award w-4 text-teal-300"></i> Achievements & Pubs
-          </a>
-        </nav>
+          <!-- Wings -->
+          <path d="M50 25 C32 12, 14 18, 8 30 C20 28, 34 30, 50 38" fill="none" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
+          <path d="M50 25 C68 12, 86 18, 92 30 C80 28, 66 30, 50 38" fill="none" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
+
+          <!-- Double Helix Strands -->
+          <path d="M30 45 Q50 55 70 65 Q50 75 30 85 Q50 95 70 105" fill="none" stroke="#ff3333" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
+          <path d="M70 45 Q50 55 30 65 Q50 75 70 85 Q50 95 30 105" fill="none" stroke="#ff4d4d" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3,3" filter="url(#glow-red)" />
+
+          <!-- DNA Rungs -->
+          <line x1="40" y1="52" x2="60" y2="52" stroke="#ff8080" stroke-width="1.8" />
+          <line x1="38" y1="65" x2="62" y2="65" stroke="#ff8080" stroke-width="1.8" />
+          <line x1="40" y1="78" x2="60" y2="78" stroke="#ff8080" stroke-width="1.8" />
+          <line x1="38" y1="91" x2="62" y2="91" stroke="#ff8080" stroke-width="1.8" />
+
+          <!-- Center Alive Pulse Core -->
+          <circle class="live-ping-dot" cx="50" cy="18" r="3" fill="#ffffff" />
+        </svg>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="pt-4 border-t border-[#006a80] space-y-2 mt-4 lg:mt-0">
-        <a href="Resume%20for%20github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold rounded-lg text-xs shadow transition active:scale-[0.98]">
-          <i class="fa-solid fa-file-arrow-down"></i> View Official CV
-        </a>
-        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
-          <i class="fa-solid fa-paper-plane"></i> Contact Me
-        </a>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="w-full lg:ml-80 p-4 sm:p-6 lg:p-10 space-y-8 lg:space-y-10">
-      
-      <!-- Executive Profile -->
-      <section id="about" class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2">
-          <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
-            <i class="fa-solid fa-shield-virus text-[#004d61]"></i> Executive Profile
-          </h2>
-          <span class="inline-block self-start sm:self-auto text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
-            9+ Years Dedicated Leadership
-          </span>
-        </div>
-        <p class="mt-4 text-xs sm:text-sm leading-relaxed text-slate-600">
-          Public Health Physician & Epidemiologist with over 9 years of dedicated field leadership across disease surveillance, outbreak investigation, routine immunization, and health systems strengthening. Actively serving as Surveillance Medical Officer (WHO-NPSN) driving India's Polio Eradication Programme, Vaccine-Preventable Disease (VPD) surveillance, wastewater epidemiology, and data-driven healthcare policy.
-        </p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 mt-5 pt-5 border-t border-slate-100 text-center">
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">WHO-NPSN</div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Surveillance Lead</div>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">Gavi Districts</div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Immunization Ops</div>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">VDPV3 & AFP</div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Outbreak Control</div>
-          </div>
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <div class="text-sm sm:text-base md:text-lg font-bold text-[#004d61]">AI & Analytics</div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider font-semibold">96% NBEMS Certified</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience & Original Radar Grid -->
-      <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 sm:gap-8">
-        
-        <!-- Experience Timeline -->
-        <section id="experience" class="xl:col-span-7 bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm space-y-6">
-          <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
-            <i class="fa-solid fa-timeline text-[#004d61]"></i> Professional Experience
-          </h2>
-
-          <div class="relative border-l-2 border-[#004d61]/30 ml-2.5 sm:ml-3.5 space-y-6 sm:space-y-8 pl-4 sm:pl-6">
-            
-            <!-- WHO SMO -->
-            <div class="relative group">
-              <div class="absolute -left-[23px] sm:-left-[31px] top-1.5 w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-[#004d61] border-2 border-white shadow"></div>
-              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200/60 transition hover:border-[#004d61]/40">
-                <div class="flex justify-between items-start flex-wrap gap-1">
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Surveillance Medical Officer (SMO)</h3>
-                  <span class="text-[10px] sm:text-[11px] font-semibold bg-[#004d61] text-white px-2 py-0.5 rounded">Current</span>
-                </div>
-                <div class="text-xs text-teal-700 font-semibold mt-0.5">World Health Organization (WHO-NPSN)</div>
-                <ul class="mt-2.5 text-xs text-slate-600 space-y-1.5 list-disc list-inside">
-                  <li>Lead AFP, VPD, and Wastewater/Environmental Surveillance.</li>
-                  <li>Spearhead outbreak response and VDPV3 epidemiological investigations.</li>
-                  <li>Coordinate Routine Immunization & HRA validations in Gavi-supported districts.</li>
-                  <li>Oversee cross-border immunization posts along Indo-Nepal international borders.</li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Senior Resident -->
-            <div class="relative group">
-              <div class="absolute -left-[23px] sm:-left-[31px] top-1.5 w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-slate-300 border-2 border-white"></div>
-              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200/60">
-                <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Senior Resident (Community Medicine)</h3>
-                <div class="text-xs text-slate-500 font-semibold mt-0.5">R.D. Gardi Medical College, Ujjain</div>
-                <p class="mt-2 text-xs text-slate-600">Conducted undergraduate/postgraduate training, field surveys, and public health operational research.</p>
-              </div>
-            </div>
-
-            <!-- Medical Officer -->
-            <div class="relative group">
-              <div class="absolute -left-[23px] sm:-left-[31px] top-1.5 w-3.5 sm:w-4 h-3.5 sm:h-4 rounded-full bg-slate-300 border-2 border-white"></div>
-              <div class="p-3.5 sm:p-4 bg-slate-50 rounded-xl border border-slate-200/60">
-                <h3 class="font-bold text-slate-900 text-xs sm:text-sm">Medical Officer (NRC & Clinical)</h3>
-                <div class="text-xs text-slate-500 font-semibold mt-0.5">District Hospital Agar Malwa & Ujjain Charitable Trust</div>
-                <p class="mt-2 text-xs text-slate-600">Managed Nutrition Rehabilitation Centre (NRC), COVID-19 isolation/supervision, and critical clinical care.</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- Original Matrix with Radar Scanning Effect -->
-        <section id="skills" class="xl:col-span-5 flex flex-col gap-6">
-          <div class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col items-center">
-            <div class="w-full flex items-center justify-between mb-2">
-              <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
-                <i class="fa-solid fa-radar text-[#004d61]"></i> Competency Matrix
-              </h2>
-              <span class="inline-flex items-center gap-1.5 text-[10px] text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200 font-semibold">
-                <span class="w-1.5 h-1.5 rounded-full bg-teal-500 animate-ping"></span> Live Analytics
-              </span>
-            </div>
-
-            <!-- Radar Scanner Canvas -->
-            <div class="radar-wrapper w-full max-w-[340px] aspect-square flex items-center justify-center p-3 relative bg-slate-50/70 border border-slate-100">
-              <div class="radar-beam"></div>
-              <canvas id="skillsRadar" class="relative z-10 w-full h-full"></canvas>
-            </div>
-          </div>
-
-          <!-- Tools Chips -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-            <h3 class="text-xs font-bold text-slate-500 tracking-wider uppercase mb-3">Tools & Systems</h3>
-            <div class="flex flex-wrap gap-1.5 text-xs font-medium text-slate-700">
-              <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">SPSS</span>
-              <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">ArcView GIS</span>
-              <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">Track Vac & Safe Vac</span>
-              <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">Biostatistics</span>
-              <span class="px-2.5 py-1 bg-slate-100 rounded-md border border-slate-200">AI in Healthcare</span>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      <!-- Education, Publications & Verified Certifications -->
-      <section id="achievements" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        
-        <!-- Education -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
-          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
-            <i class="fa-solid fa-graduation-cap"></i> Education
-          </h3>
-          <div class="text-xs space-y-2.5">
-            <div>
-              <div class="font-semibold text-slate-800">MD - Community Medicine</div>
-              <div class="text-slate-500">NSCB Medical College, Jabalpur</div>
-            </div>
-            <div>
-              <div class="font-semibold text-slate-800">MBBS</div>
-              <div class="text-slate-500">R.D. Gardi Medical College, Ujjain</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Publications -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
-          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
-            <i class="fa-solid fa-book-journal-whills"></i> Publications
-          </h3>
-          <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside">
-            <li><strong>Predictors of High-Risk Pregnancy</strong> (Healthline Journal)</li>
-            <li><strong>Impact of COVID-19 on Routine Immunization</strong> (Global Journal of Medicine and Public Health)</li>
-          </ul>
-        </div>
-
-        <!-- Verified Certifications -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3 md:col-span-2 xl:col-span-1">
-          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
-            <i class="fa-solid fa-certificate"></i> Verified Certifications
-          </h3>
-          <ul class="text-xs text-slate-600 space-y-2">
-            <li>
-              <!-- Universal Click-to-View -->
-              <button onclick="openCertModal('National%20science%20day%20celebration.pdf', 'National Science Day Celebration Certificate')" 
-                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-1.5 rounded-lg hover:bg-teal-50/70 border border-transparent hover:border-teal-200">
-                <span class="flex items-center"><i class="fa-solid fa-file-pdf text-red-500 mr-2 text-sm"></i> National Science Day Certificate</span>
-                <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-medium group-hover:bg-teal-600 group-hover:text-white transition">View</span>
-              </button>
-            </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-amber-500 mr-2"></i> AI in Healthcare (NBEMS - 96%)</span>
-              <span class="text-[10px] text-slate-400 font-medium">Verified</span>
-            </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-teal-600 mr-2"></i> Infectious Disease Modelling</span>
-              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
-            </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-[#004d61] mr-2"></i> ArcView GIS Spatial Analysis</span>
-              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
-            </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-blue-500 mr-2"></i> WHO OpenWHO Epidemic Control</span>
-              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
-            </li>
-          </ul>
-        </div>
-
-      </section>
-
-    </main>
-  </div>
-
-  <!-- DIRECT CERTIFICATE MODAL -->
-  <div id="certModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/70 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 ease-out" onclick="handleBackdropClick(event)">
-    <div class="modal-box bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 translate-y-3">
-      
-      <div class="flex items-center justify-between px-4 py-3 bg-slate-50 border-b border-slate-100">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-certificate text-teal-600"></i>
-          <h3 id="modalTitle" class="text-xs sm:text-sm font-bold text-slate-800 truncate">Certificate</h3>
-        </div>
-        <button onclick="closeCertModal()" class="w-7 h-7 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-full transition text-sm">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="p-2 sm:p-3 bg-slate-100 flex items-center justify-center">
-        <iframe id="certFrame" src="" class="w-full h-[55vh] sm:h-[380px] rounded-xl border border-slate-200 bg-white" frameborder="0"></iframe>
-      </div>
-
-      <div class="flex items-center justify-between px-4 py-2.5 bg-white border-t border-slate-100">
-        <span class="text-[10px] text-slate-400">Dr. Mahendra Soni • Verified Credential</span>
-        <button onclick="closeCertModal()" class="px-3.5 py-1 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold transition">
-          Close
-        </button>
+      <div class="badge-texts">
+        <span class="title-row">Genomics &amp; Public Health</span>
+        <span class="live-status">Live Surveillance</span>
       </div>
     </div>
-  </div>
 
-  <!-- Radar & Mobile-Safe Modal Script -->
-  <script>
-    const ctx = document.getElementById('skillsRadar').getContext('2d');
-    new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: [
-          'Epidemiology',
-          ['VPD', 'Surveillance'],
-          ['Data', 'Analytics'],
-          'Field Ops',
-          ['Policy', 'Advocacy'],
-          ['AI in', 'Health']
-        ],
-        datasets: [{
-          label: 'Proficiency Level',
-          data: [95, 98, 90, 95, 88, 92],
-          backgroundColor: 'rgba(20, 184, 166, 0.25)',
-          borderColor: '#004d61',
-          pointBackgroundColor: '#14b8a6',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: '#004d61',
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        layout: {
-          padding: 12
-        },
-        scales: {
-          r: {
-            angleLines: { color: '#cbd5e1' },
-            grid: { color: '#e2e8f0' },
-            suggestedMin: 50,
-            suggestedMax: 100,
-            ticks: { display: false },
-            pointLabels: {
-              font: { size: 10, weight: '600' },
-              color: '#334155',
-              padding: 4
-            }
-          }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
+    <!-- Doctor Profile Meta -->
+    <div class="doctor-meta">
+      <h1>DR. MAHENDRA SONI</h1>
+      <p class="degrees">MBBS, MD (Community Medicine)</p>
+      <span class="role-pill">WHO - Surveillance Medical Officer</span>
+    </div>
 
-    // Cross-Platform Certificate Opener
-    function openCertModal(pdfRelativePath, title) {
-      document.getElementById('modalTitle').innerText = title;
-      
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      const absolutePdfUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/') + pdfRelativePath;
-      
-      if (isMobile) {
-        document.getElementById('certFrame').src = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(absolutePdfUrl)}`;
-      } else {
-        document.getElementById('certFrame').src = `${pdfRelativePath}#toolbar=0&navpanes=0&scrollbar=0`;
-      }
-      
-      const modal = document.getElementById('certModal');
-      modal.classList.add('modal-active');
-      document.body.style.overflow = 'hidden';
-    }
+    <!-- Contact Details -->
+    <div class="contact-details">
+      <div class="contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Varanasi, Uttar Pradesh, India</span>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:mahendra3632399@gmail.com">mahendra3632399@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:+917999899363">+91-7999899363</a>
+      </div>
+    </div>
 
-    function closeCertModal() {
-      const modal = document.getElementById('certModal');
-      modal.classList.remove('modal-active');
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        document.getElementById('certFrame').src = '';
-      }, 250);
-    }
+    <!-- Navigation -->
+    <nav class="nav-links">
+      <a href="#executive-summary" class="nav-btn active">
+        <i class="fa-solid fa-circle-info"></i> Executive Summary
+      </a>
+      <a href="#experience" class="nav-btn">
+        <i class="fa-solid fa-briefcase"></i> Experience &amp; Timeline
+      </a>
+      <a href="#competency" class="nav-btn">
+        <i class="fa-solid fa-chart-pie"></i> Competency Matrix
+      </a>
+      <a href="#achievements" class="nav-btn">
+        <i class="fa-solid fa-award"></i> Achievements &amp; Pubs
+      </a>
+    </nav>
 
-    function handleBackdropClick(e) {
-      if (e.target.id === 'certModal') {
-        closeCertModal();
-      }
-    }
+    <!-- CTAs -->
+    <div class="action-buttons">
+      <a href="#" class="cta-btn cta-primary">
+        <i class="fa-solid fa-file-lines"></i> View Official CV
+      </a>
+      <a href="mailto:mahendra3632399@gmail.com" class="cta-btn cta-secondary">
+        <i class="fa-solid fa-paper-plane"></i> Contact Me
+      </a>
+    </div>
+  </aside>
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeCertModal();
-    });
-  </script>
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Executive Profile -->
+    <section id="executive-summary" class="content-card">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-gear" style="color: #0f766e;"></i> EXECUTIVE PROFILE</h2>
+        <span class="tag-badge">9+ Years Dedicated Leadership</span>
+      </div>
+      <p class="profile-summary">
+        Public Health Physician &amp; Epidemiologist with over 9 years of dedicated field leadership across disease surveillance, outbreak investigation, routine immunization, and health systems strengthening. Actively serving as Surveillance Medical Officer (WHO-NPSN) driving India's Polio Eradication Programme, Vaccine-Preventable Disease (VPD) surveillance, wastewater epidemiology, and data-driven healthcare policy.
+      </p>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <h3>WHO-NPSN</h3>
+          <p>Surveillance Lead</p>
+        </div>
+        <div class="metric-card">
+          <h3>Gavi Districts</h3>
+          <p>Immunization Ops</p>
+        </div>
+        <div class="metric-card">
+          <h3>VDPV3 &amp; AFP</h3>
+          <p>Outbreak Control</p>
+        </div>
+        <div class="metric-card">
+          <h3>AI &amp; Analytics</h3>
+          <p>96% NBEMS Certified</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section id="experience" class="content-card">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-network-wired" style="color: #0f766e;"></i> PROFESSIONAL EXPERIENCE</h2>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-role-header">
+          <h3>Surveillance Medical Officer (SMO)</h3>
+          <span class="current-badge">Current</span>
+        </div>
+        <div class="timeline-company">World Health Organization (WHO-NPSN)</div>
+        <ul class="timeline-list">
+          <li>Lead AFP, VPD, and Wastewater/Environmental Surveillance.</li>
+          <li>Spearhead outbreak response and VDPV3 epidemiological investigations.</li>
+          <li>Coordinate Routine Immunization &amp; HRA validations in Gavi-supported districts.</li>
+          <li>Oversee cross-border immunization posts along Indo-Nepal international borders.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
 
 </body>
 </html>
