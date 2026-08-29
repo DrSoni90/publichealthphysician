@@ -189,7 +189,7 @@
         <a href="Resume%20for%20github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold rounded-lg text-xs shadow transition active:scale-[0.98]">
           <i class="fa-solid fa-file-arrow-down"></i> View Official CV
         </a>
-        <a href="url?id=0" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
+        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
           <i class="fa-solid fa-paper-plane"></i> Contact Me
         </a>
       </div>
@@ -295,10 +295,10 @@
               </span>
             </div>
 
-            <!-- Alive Radar Container with Sweep Beam -->
-            <div class="radar-wrapper w-full max-w-[290px] aspect-square flex items-center justify-center p-2 relative bg-slate-50/70 border border-slate-100">
+            <!-- Radar Container with Adequate Padding -->
+            <div class="radar-wrapper w-full max-w-[340px] aspect-square flex items-center justify-center p-3 relative bg-slate-50/70 border border-slate-100">
               <div class="radar-beam"></div>
-              <canvas id="skillsRadar" class="relative z-10"></canvas>
+              <canvas id="skillsRadar" class="relative z-10 w-full h-full"></canvas>
             </div>
           </div>
 
@@ -418,12 +418,19 @@
 
   <!-- Scripts -->
   <script>
-    // Radar Chart Configuration
+    // Radar Chart Configuration with Multi-line Labels & Auto-Padding
     const ctx = document.getElementById('skillsRadar').getContext('2d');
     new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: ['Epidemiology', 'VPD Surveillance', 'Data Analytics', 'Field Ops', 'Policy Advocacy', 'AI in Health'],
+        labels: [
+          'Epidemiology',
+          ['VPD', 'Surveillance'],
+          ['Data', 'Analytics'],
+          'Field Ops',
+          ['Policy', 'Advocacy'],
+          ['AI in', 'Health']
+        ],
         datasets: [{
           label: 'Proficiency Level',
           data: [95, 98, 90, 95, 88, 92],
@@ -440,7 +447,10 @@
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
+        layout: {
+          padding: 10
+        },
         scales: {
           r: {
             angleLines: { color: '#cbd5e1' },
@@ -450,7 +460,8 @@
             ticks: { display: false },
             pointLabels: {
               font: { size: 10, weight: '600' },
-              color: '#334155'
+              color: '#334155',
+              padding: 4
             }
           }
         },
