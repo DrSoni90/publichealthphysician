@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Chart.js for Matrix -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     body { font-family: 'Inter', sans-serif; }
@@ -76,71 +78,37 @@
       100% { transform: rotateY(360deg); }
     }
 
-    /* Circular Orbiting Wheel */
-    .orbit-stage {
+    /* Radar Live Scan Effect */
+    .radar-wrapper {
       position: relative;
-      width: 300px;
-      height: 300px;
-      margin: 0 auto;
-      border-radius: 50%;
+      overflow: hidden;
+      border-radius: 1rem;
     }
-    @media (max-width: 400px) {
-      .orbit-stage {
-        transform: scale(0.85);
-      }
-    }
-    .orbit-rotator {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      animation: orbitSpin 30s linear infinite;
-    }
-    .orbit-stage:hover .orbit-rotator,
-    .orbit-stage:hover .counter-rotate {
-      animation-play-state: paused;
-    }
-
-    .orbit-slot {
+    .radar-beam {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 0;
-      height: 0;
+      width: 140px;
+      height: 140px;
+      transform-origin: top left;
+      background: conic-gradient(from 0deg, rgba(20, 184, 166, 0.25) 0deg, rgba(20, 184, 166, 0) 60deg);
+      border-radius: 100% 0 0 0;
+      animation: radarSweep 4s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes radarSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    /* 8 Nodes on a 115px radius circle */
-    .slot-0 { transform: rotate(0deg) translate(115px); }
-    .slot-1 { transform: rotate(45deg) translate(115px); }
-    .slot-2 { transform: rotate(90deg) translate(115px); }
-    .slot-3 { transform: rotate(135deg) translate(115px); }
-    .slot-4 { transform: rotate(180deg) translate(115px); }
-    .slot-5 { transform: rotate(225deg) translate(115px); }
-    .slot-6 { transform: rotate(270deg) translate(115px); }
-    .slot-7 { transform: rotate(315deg) translate(115px); }
-
-    .counter-rotate {
-      display: inline-block;
-      transform-origin: center center;
-      animation: counterOrbit 30s linear infinite;
-    }
-
-    @keyframes orbitSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes counterOrbit {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(-360deg); }
-    }
-
-    /* Modal Animation */
+    /* Modal Styling */
     .modal-active {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
     }
     .modal-box {
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.25s ease-out;
     }
     .modal-active .modal-box {
       transform: scale(1) translateY(0) !important;
@@ -154,7 +122,8 @@
     <!-- SIDEBAR -->
     <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-5 sm:p-6 lg:fixed lg:h-screen lg:overflow-y-auto z-20 shadow-xl">
       <div>
-        <!-- Profile Header with Alive DNA Emblem -->
+        
+        <!-- Header with Alive DNA -->
         <div class="flex flex-col items-center text-center pb-5 border-b border-[#006a80]">
           <div class="mb-3 px-3 py-2 bg-slate-900/40 border border-teal-500/30 rounded-2xl flex items-center gap-3 shadow-lg backdrop-blur-sm">
             <div class="dna-stage">
@@ -182,7 +151,7 @@
           </span>
         </div>
 
-        <!-- Contacts -->
+        <!-- Contact Info -->
         <div class="py-4 text-xs space-y-2 border-b border-[#006a80] text-teal-100">
           <div class="flex items-center gap-3">
             <i class="fa-solid fa-location-dot text-teal-300 w-4 text-center"></i>
@@ -207,7 +176,7 @@
             <i class="fa-solid fa-briefcase w-4 text-teal-300"></i> Experience & Timeline
           </a>
           <a href="#skills" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-arrows-spin w-4 text-teal-300"></i> Competency Wheel
+            <i class="fa-solid fa-chart-pie w-4 text-teal-300"></i> Competency Matrix
           </a>
           <a href="#achievements" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
             <i class="fa-solid fa-award w-4 text-teal-300"></i> Achievements & Pubs
@@ -220,13 +189,13 @@
         <a href="Resume%20for%20github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold rounded-lg text-xs shadow transition active:scale-[0.98]">
           <i class="fa-solid fa-file-arrow-down"></i> View Official CV
         </a>
-        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
+        <a href="url?id=0" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
           <i class="fa-solid fa-paper-plane"></i> Contact Me
         </a>
       </div>
     </aside>
 
-    <!-- MAIN DASHBOARD -->
+    <!-- MAIN CONTENT -->
     <main class="w-full lg:ml-80 p-4 sm:p-6 lg:p-10 space-y-8 lg:space-y-10">
       
       <!-- Executive Profile -->
@@ -262,7 +231,7 @@
         </div>
       </section>
 
-      <!-- Experience & Rotating Matrix Section -->
+      <!-- Experience & Alive Matrix Grid -->
       <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 sm:gap-8">
         
         <!-- Experience Timeline -->
@@ -314,88 +283,22 @@
           </div>
         </section>
 
-        <!-- Circular Orbit Competency Wheel -->
+        <!-- Alive Radar Competency Matrix -->
         <section id="skills" class="xl:col-span-5 flex flex-col gap-6">
           <div class="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col items-center">
-            <div class="w-full flex items-center justify-between mb-2">
+            <div class="w-full flex items-center justify-between mb-3">
               <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-wide uppercase flex items-center gap-2">
-                <i class="fa-solid fa-arrows-spin text-[#004d61]"></i> Competency Matrix
+                <i class="fa-solid fa-radar text-[#004d61]"></i> Competency Matrix
               </h2>
-              <span class="text-[10px] text-slate-400 font-medium italic"><i class="fa-regular fa-hand-pointer"></i> Hover to pause</span>
+              <span class="inline-flex items-center gap-1.5 text-[10px] text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200 font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-teal-500 animate-ping"></span> Live Analytics
+              </span>
             </div>
 
-            <!-- Circular Stage -->
-            <div class="orbit-stage my-4">
-              <!-- Visual Orbit Track Lines -->
-              <div class="absolute inset-0 rounded-full border border-slate-200/80 shadow-inner"></div>
-              <div class="absolute inset-7 rounded-full border border-dashed border-teal-300/60"></div>
-              <div class="absolute inset-16 rounded-full border border-slate-200"></div>
-
-              <!-- Stationary Center Hub -->
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#004d61] text-white flex flex-col items-center justify-center shadow-lg border-2 border-teal-300 z-10 text-center p-1">
-                <i class="fa-solid fa-dna text-teal-300 text-sm mb-0.5"></i>
-                <span class="text-[9px] font-bold leading-tight uppercase">Public Health Matrix</span>
-              </div>
-
-              <!-- Circular Rotating Ring -->
-              <div class="orbit-rotator">
-                <div class="orbit-slot slot-0">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition cursor-default">
-                      Epidemiology
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-1">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition cursor-default">
-                      VPD Surveillance
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-2">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition cursor-default">
-                      Wastewater & ES
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-3">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition cursor-default">
-                      Data Analytics
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-4">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition cursor-default">
-                      AI in Health
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-5">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition cursor-default">
-                      Field Ops & AFP
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-6">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-[#004d61] text-[#004d61] text-[10px] font-bold rounded-full shadow-sm hover:bg-[#004d61] hover:text-white transition cursor-default">
-                      Routine Immunization
-                    </span>
-                  </div>
-                </div>
-                <div class="orbit-slot slot-7">
-                  <div class="counter-rotate">
-                    <span class="px-2.5 py-1 bg-white border border-teal-600 text-teal-700 text-[10px] font-bold rounded-full shadow-sm hover:bg-teal-600 hover:text-white transition cursor-default">
-                      Health Systems
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <!-- Alive Radar Container with Sweep Beam -->
+            <div class="radar-wrapper w-full max-w-[290px] aspect-square flex items-center justify-center p-2 relative bg-slate-50/70 border border-slate-100">
+              <div class="radar-beam"></div>
+              <canvas id="skillsRadar" class="relative z-10"></canvas>
             </div>
           </div>
 
@@ -445,18 +348,18 @@
           </ul>
         </div>
 
-        <!-- Verified Certifications with On-Screen Viewer -->
+        <!-- Verified Certifications -->
         <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3 md:col-span-2 xl:col-span-1">
           <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
             <i class="fa-solid fa-certificate"></i> Verified Certifications
           </h3>
           <ul class="text-xs text-slate-600 space-y-2">
             <li>
-              <!-- Interactive Modal Trigger -->
-              <button onclick="openCertModal('National%20science%20day%20celebration.pdf', 'National Science Day Celebration Certificate')" 
+              <!-- Direct Click Trigger -->
+              <button onclick="openCertModal('National%20science%20day%20celebration.pdf#toolbar=0&navpanes=0&scrollbar=0', 'National Science Day Celebration Certificate')" 
                       class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-1.5 rounded-lg hover:bg-teal-50/70 border border-transparent hover:border-teal-200">
                 <span class="flex items-center"><i class="fa-solid fa-file-pdf text-red-500 mr-2 text-sm"></i> National Science Day Certificate</span>
-                <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-medium group-hover:bg-teal-600 group-hover:text-white transition">Quick View</span>
+                <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-medium group-hover:bg-teal-600 group-hover:text-white transition">View</span>
               </button>
             </li>
             <li class="flex items-center justify-between text-slate-700 p-1.5">
@@ -483,38 +386,81 @@
     </main>
   </div>
 
-  <!-- ON-SCREEN CERTIFICATE MODAL VIEWER -->
-  <div id="certModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-out" onclick="handleBackdropClick(event)">
-    <div class="modal-box bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 translate-y-4">
+  <!-- DIRECT CERTIFICATE MODAL -->
+  <div id="certModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/70 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 ease-out" onclick="handleBackdropClick(event)">
+    <div class="modal-box bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 translate-y-3">
       
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between px-5 py-3.5 bg-slate-50 border-b border-slate-100">
+      <!-- Minimalist Header with Direct Close -->
+      <div class="flex items-center justify-between px-4 py-3 bg-slate-50 border-b border-slate-100">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-certificate text-teal-600"></i>
-          <h3 id="modalTitle" class="text-xs sm:text-sm font-bold text-slate-800 truncate">Certificate Viewer</h3>
+          <h3 id="modalTitle" class="text-xs sm:text-sm font-bold text-slate-800 truncate">Certificate</h3>
         </div>
-        <button onclick="closeCertModal()" class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-full transition text-sm">
+        <button onclick="closeCertModal()" class="w-7 h-7 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-full transition text-sm">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <!-- Small Embedded Viewer Frame -->
-      <div class="p-3 bg-slate-100">
-        <iframe id="certFrame" src="" class="w-full h-[60vh] sm:h-[420px] rounded-xl border border-slate-200 bg-white" frameborder="0"></iframe>
+      <!-- Pure Certificate Canvas -->
+      <div class="p-2 sm:p-3 bg-slate-100 flex items-center justify-center">
+        <iframe id="certFrame" src="" class="w-full h-[55vh] sm:h-[380px] rounded-xl border border-slate-200 bg-white" frameborder="0"></iframe>
       </div>
 
-      <!-- Modal Footer -->
-      <div class="flex items-center justify-between px-5 py-3 bg-white border-t border-slate-100">
-        <span class="text-[11px] text-slate-400">Dr. Mahendra Soni • Verified Credential</span>
-        <button onclick="closeCertModal()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold transition">
+      <!-- Footer -->
+      <div class="flex items-center justify-between px-4 py-2.5 bg-white border-t border-slate-100">
+        <span class="text-[10px] text-slate-400">Dr. Mahendra Soni • Verified Credential</span>
+        <button onclick="closeCertModal()" class="px-3.5 py-1 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold transition">
           Close
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Modal Script -->
+  <!-- Scripts -->
   <script>
+    // Radar Chart Configuration
+    const ctx = document.getElementById('skillsRadar').getContext('2d');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Epidemiology', 'VPD Surveillance', 'Data Analytics', 'Field Ops', 'Policy Advocacy', 'AI in Health'],
+        datasets: [{
+          label: 'Proficiency Level',
+          data: [95, 98, 90, 95, 88, 92],
+          backgroundColor: 'rgba(20, 184, 166, 0.25)',
+          borderColor: '#004d61',
+          pointBackgroundColor: '#14b8a6',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: '#004d61',
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          r: {
+            angleLines: { color: '#cbd5e1' },
+            grid: { color: '#e2e8f0' },
+            suggestedMin: 50,
+            suggestedMax: 100,
+            ticks: { display: false },
+            pointLabels: {
+              font: { size: 10, weight: '600' },
+              color: '#334155'
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // Certificate Modal Functions
     function openCertModal(pdfUrl, title) {
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('certFrame').src = pdfUrl;
@@ -529,7 +475,7 @@
       document.body.style.overflow = '';
       setTimeout(() => {
         document.getElementById('certFrame').src = '';
-      }, 300);
+      }, 250);
     }
 
     function handleBackdropClick(e) {
