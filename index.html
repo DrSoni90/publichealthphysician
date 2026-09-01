@@ -19,23 +19,38 @@
     ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
-    /* Alive Red Caduceus DNA Emblem */
-    .alive-caduceus-svg {
+    /* Alive 3D Metallic Caduceus Breathing Animation for logo.png.jpg */
+    .caduceus-alive-frame {
+      width: 68px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      background: #0f172a;
+    }
+    .caduceus-alive-img {
       width: 100%;
       height: 100%;
-      animation: pulse-alive 2s ease-in-out infinite alternate;
+      object-fit: cover;
+      object-position: center;
+      animation: aliveCaduceusPulse 2.6s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
     }
-    @keyframes pulse-alive {
-      0% { transform: scale(0.96); filter: drop-shadow(0 0 3px rgba(255, 68, 68, 0.6)); }
-      50% { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(255, 30, 30, 0.95)); }
-      100% { transform: scale(0.96); filter: drop-shadow(0 0 3px rgba(255, 68, 68, 0.6)); }
-    }
-    .live-ping-dot {
-      animation: ping-dot 1.2s ease-in-out infinite alternate;
-    }
-    @keyframes ping-dot {
-      0% { opacity: 0.3; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1.2); }
+    @keyframes aliveCaduceusPulse {
+      0% {
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.5));
+      }
+      50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 12px rgba(239, 68, 68, 1)) contrast(1.1);
+      }
+      100% {
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.5));
+      }
     }
 
     /* Radar Live Scan Sweep */
@@ -83,41 +98,18 @@
     <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-5 sm:p-6 lg:fixed lg:h-screen lg:overflow-y-auto z-20 shadow-xl">
       <div>
         
-        <!-- Header with Original Alive Red Caduceus Emblem -->
+        <!-- Header with logo.png.jpg -->
         <div class="flex flex-col items-center text-center pb-5 border-b border-[#006a80]">
-          <div class="mb-3 px-3 py-2 bg-slate-900/40 border border-red-500/30 rounded-2xl flex items-center gap-3 shadow-lg backdrop-blur-sm">
-            <div class="w-11 h-13 flex items-center justify-center relative">
-              <svg class="alive-caduceus-svg w-10 h-12" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ff4d4d" />
-                    <stop offset="50%" stop-color="#ef4444" />
-                    <stop offset="100%" stop-color="#990000" />
-                  </linearGradient>
-                </defs>
-                <line x1="50" y1="20" x2="50" y2="105" stroke="url(#redGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow-red)" />
-                <circle cx="50" cy="18" r="5.5" fill="url(#redGrad)" filter="url(#glow-red)" />
-                <path d="M50 25 C32 12, 14 18, 8 30 C20 28, 34 30, 50 38" fill="none" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
-                <path d="M50 25 C68 12, 86 18, 92 30 C80 28, 66 30, 50 38" fill="none" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
-                <path d="M30 45 Q50 55 70 65 Q50 75 30 85 Q50 95 70 105" fill="none" stroke="#ff3333" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
-                <path d="M70 45 Q50 55 30 65 Q50 75 70 85 Q50 95 30 105" fill="none" stroke="#ff4d4d" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3,3" filter="url(#glow-red)" />
-                <line x1="40" y1="52" x2="60" y2="52" stroke="#ff8080" stroke-width="1.8" />
-                <line x1="38" y1="65" x2="62" y2="65" stroke="#ff8080" stroke-width="1.8" />
-                <line x1="40" y1="78" x2="60" y2="78" stroke="#ff8080" stroke-width="1.8" />
-                <line x1="38" y1="91" x2="62" y2="91" stroke="#ff8080" stroke-width="1.8" />
-                <circle class="live-ping-dot" cx="50" cy="18" r="3" fill="#ffffff" />
-              </svg>
+          <div class="mb-3 px-3.5 py-2.5 bg-slate-950/70 border border-red-500/40 rounded-2xl flex items-center gap-3 shadow-xl backdrop-blur-md">
+            
+            <div class="caduceus-alive-frame">
+              <img src="logo.png.jpg" alt="Red Metallic Caduceus" class="caduceus-alive-img" />
             </div>
+
             <div class="text-left pr-1">
-              <span class="block text-[10px] uppercase font-bold tracking-widest text-white">Genomics &amp; Public Health</span>
-              <span class="inline-flex items-center gap-1 text-[9px] text-red-300 font-semibold mt-0.5">
+              <span class="block text-[10px] uppercase font-bold tracking-widest text-white">Public Health</span>
+              <span class="block text-xs font-bold text-red-200 tracking-wide">Physician</span>
+              <span class="inline-flex items-center gap-1.5 text-[9px] text-red-300 font-semibold mt-0.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span> Live Surveillance
               </span>
             </div>
@@ -171,7 +163,7 @@
         <a href="Resume%20for%20github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold rounded-lg text-xs shadow transition active:scale-[0.98]">
           <i class="fa-solid fa-file-arrow-down"></i> View Official CV
         </a>
-        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
+        <a href="url?id=0" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
           <i class="fa-solid fa-paper-plane"></i> Contact Me
         </a>
       </div>
