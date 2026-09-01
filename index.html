@@ -39,18 +39,9 @@
       filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
     }
     @keyframes aliveCaduceusPulse {
-      0% {
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.5));
-      }
-      50% {
-        transform: scale(1.05);
-        filter: drop-shadow(0 0 12px rgba(239, 68, 68, 1)) contrast(1.1);
-      }
-      100% {
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.5));
-      }
+      0% { transform: scale(0.96); filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.5)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(239, 68, 68, 1)) contrast(1.1); }
+      100% { transform: scale(0.96); filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.5)); }
     }
 
     /* Radar Live Scan Sweep */
@@ -395,7 +386,7 @@
           </ul>
         </div>
 
-        <!-- Column 2: Evidence-Based Certifications (Fully Interactive View Options) -->
+        <!-- Column 2: Evidence-Based Certifications (Fully Interactive with View Options for All, using certificates/ folder path) -->
         <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
           <div class="flex items-center justify-between pb-2 border-b border-slate-100">
             <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
@@ -407,34 +398,46 @@
           </div>
           <ul class="text-xs text-slate-600 space-y-2.5">
             <li>
-              <button onclick="openCertModal('National%20science%20day%20celebration.pdf', 'National Science Day Celebration Certificate')" 
+              <button onclick="openCertModal('certificates/National%20science%20day%20celebration.pdf', 'National Science Day Celebration Certificate')" 
                       class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
                 <span class="flex items-center"><i class="fa-solid fa-file-pdf text-red-500 mr-2 text-sm"></i> National Science Day Certificate</span>
                 <span class="text-[10px] bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-teal-600 group-hover:text-white transition">View PDF</span>
               </button>
             </li>
             <li>
-              <button onclick="openCertModal('NBEMS%20-%20AI_Healthcare_Certificate.pdf', 'AI in Healthcare Certificate (NBEMS)')" 
+              <button onclick="openCertModal('certificates/NBEMS%20-%20AI_Healthcare_Certificate.pdf', 'AI in Healthcare Certificate (NBEMS - 96%)')" 
                       class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
                 <span class="flex items-center"><i class="fa-solid fa-award text-amber-500 mr-2 text-sm"></i> AI in Healthcare (NBEMS - 96%)</span>
                 <span class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-amber-600 group-hover:text-white transition">View PDF</span>
               </button>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
-              <span class="flex items-center"><i class="fa-solid fa-award text-teal-600 mr-2"></i> Mathematical Modelling for Infectious Diseases (NIHFW &amp; ICMR-NITV)</span>
-              <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
+            <li>
+              <button onclick="openCertModal('certificates/Mathematical_Modelling_Certificate.pdf', 'Mathematical Modelling Certificate')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-teal-600 mr-2 text-sm"></i> Mathematical Modelling for Infectious Diseases</span>
+                <span class="text-[10px] bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-teal-600 group-hover:text-white transition">View PDF</span>
+              </button>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
-              <span class="flex items-center"><i class="fa-solid fa-award text-blue-600 mr-2"></i> eCourse on Non-Communicable Diseases (Grade A+, PHFI)</span>
-              <span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
+            <li>
+              <button onclick="openCertModal('certificates/NCD_PHFI_Certificate.pdf', 'Non-Communicable Diseases eCourse Certificate (PHFI)')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-blue-600 mr-2 text-sm"></i> eCourse on Non-Communicable Diseases (PHFI)</span>
+                <span class="text-[10px] bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-blue-600 group-hover:text-white transition">View PDF</span>
+              </button>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
-              <span class="flex items-center"><i class="fa-solid fa-award text-[#004d61] mr-2"></i> ArcView GIS Spatial Analysis (WHO)</span>
-              <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
+            <li>
+              <button onclick="openCertModal('certificates/ArcView_GIS_Certificate.pdf', 'ArcView GIS Spatial Analysis Certificate')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-[#004d61] mr-2 text-sm"></i> ArcView GIS Spatial Analysis (WHO)</span>
+                <span class="text-[10px] bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-teal-600 group-hover:text-white transition">View PDF</span>
+              </button>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
-              <span class="flex items-center"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Basic Course in Biomedical Research (NMC - 75%)</span>
-              <span class="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
+            <li>
+              <button onclick="openCertModal('certificates/Biomedical_Research_Certificate.pdf', 'Biomedical Research Certificate (NMC)')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-indigo-600 mr-2 text-sm"></i> Basic Course in Biomedical Research (NMC)</span>
+                <span class="text-[10px] bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-indigo-600 group-hover:text-white transition">View PDF</span>
+              </button>
             </li>
           </ul>
         </div>
