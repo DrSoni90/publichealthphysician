@@ -81,6 +81,26 @@
       100% { box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1); border-color: #99f6e4; }
     }
 
+    /* Infinite Running Ticker Flow for Achievements */
+    .ticker-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: tickerScroll 30s linear infinite;
+    }
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* Modal Styling */
     .modal-active {
       opacity: 1 !important;
@@ -146,7 +166,7 @@
           </div>
           <div class="flex items-center gap-3 pt-1">
             <i class="fa-solid fa-envelope text-teal-300 w-4 text-center"></i>
-            <a href="mailto:mahendra3632399@gmail.com" class="hover:underline hover:text-white truncate transition">mahendra3632399@gmail.com</a>
+            <a href="url?id=0" class="hover:underline hover:text-white truncate transition">mahendra3632399@gmail.com</a>
           </div>
           <div class="flex items-center gap-3">
             <i class="fa-solid fa-phone text-teal-300 w-4 text-center"></i>
@@ -363,30 +383,85 @@
 
       </section>
 
-      <!-- ALIVE WINNING SECTION: ACHIEVEMENTS & CERTIFICATIONS (2 Columns) -->
+      <!-- ALIVE WINNING SECTION: ACHIEVEMENTS & CERTIFICATIONS (2 Columns with Infinite Running Ticker for Achievements) -->
       <section id="achievements-certs" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
         
-        <!-- Column 1: Achievements & Milestones (Alive Winning Card) -->
-        <div class="winning-pulse-card p-5 sm:p-6 rounded-2xl space-y-4">
+        <!-- Column 1: Achievements & Milestones (Infinite Running Loop Flow) -->
+        <div class="winning-pulse-card p-5 sm:p-6 rounded-2xl space-y-4 flex flex-col justify-between">
           <div class="flex items-center justify-between pb-2 border-b border-teal-200/60">
             <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
               <i class="fa-solid fa-trophy text-amber-500 animate-bounce"></i> Achievements &amp; Milestones
             </h3>
             <span class="text-[10px] bg-teal-600 text-white px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider shadow-sm">
-              Featured Wins
+              Live Loop Flow
             </span>
           </div>
-          <ul class="text-xs text-slate-700 space-y-3 list-disc list-inside">
-            <li><strong>Guinness World Record Title:</strong> Achieved for "Most viewers of an Artificial Intelligence in Healthcare lesson livestream on YouTube" (Feb 2026).</li>
-            <li><strong>Polio Containment Investigation:</strong> Led epidemiological investigations following VDPV3 detection (13 nucleotides) during Environmental Sewage Sampling.</li>
-            <li><strong>State Consultation Presenter:</strong> Presenter at the State Level Sensitization Cum Consultation Meeting focusing on Strengthening Immunization Data Systems at Varanasi, U.P.</li>
-            <li><strong>Divisional Review Contributor:</strong> Contributed to the 2025 performance feedback divisional meeting chaired by AD Medical &amp; Health Services, Lucknow.</li>
-            <li><strong>Cross-Border Collaboration:</strong> Participated in the International Cross-Border Capacity Building Meeting for SMOs from India and Nepal at Gorakhpur.</li>
-            <li><strong>NPTEL Medals:</strong> Awarded Gold Medal in "Maternal Infant Young Child Nutrition" and Silver Medal in "Basics of Health Promotion and Education Intervention".</li>
-          </ul>
+
+          <!-- Ticker Loop Container -->
+          <div class="ticker-container py-3">
+            <div class="ticker-track">
+              <!-- Item 1 -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-award text-amber-500 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Guinness World Record Title:</strong> Most viewers of AI in Healthcare lesson livestream on YouTube (Feb 2026).</p>
+              </div>
+              <!-- Item 2 -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-shield-virus text-teal-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Polio Containment Investigation:</strong> Led investigations following VDPV3 detection (13 nucleotides) in sewage sampling.</p>
+              </div>
+              <!-- Item 3 -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-chalkboard-user text-indigo-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>State Consultation Presenter:</strong> Presented at State Level Sensitization Meeting on Immunization Data Systems at Varanasi.</p>
+              </div>
+              <!-- Item 4 -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-handshake text-blue-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Divisional Review Contributor:</strong> Contributed to 2025 performance review chaired by AD Medical &amp; Health Services, Lucknow.</p>
+              </div>
+              <!-- Item 5 -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-earth-asia text-emerald-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Cross-Border Collaboration:</strong> Participated in India-Nepal Capacity Building Meeting for SMOs at Gorakhpur.</p>
+              </div>
+              <!-- Item 6 -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-medal text-amber-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>NPTEL Medals:</strong> Awarded Gold Medal in MIYCN and Silver Medal in Health Promotion and Education.</p>
+              </div>
+
+              <!-- Duplicate Set for Seamless Infinite Loop -->
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-award text-amber-500 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Guinness World Record Title:</strong> Most viewers of AI in Healthcare lesson livestream on YouTube (Feb 2026).</p>
+              </div>
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-shield-virus text-teal-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Polio Containment Investigation:</strong> Led investigations following VDPV3 detection (13 nucleotides) in sewage sampling.</p>
+              </div>
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-chalkboard-user text-indigo-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>State Consultation Presenter:</strong> Presented at State Level Sensitization Meeting on Immunization Data Systems at Varanasi.</p>
+              </div>
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-handshake text-blue-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Divisional Review Contributor:</strong> Contributed to 2025 performance review chaired by AD Medical &amp; Health Services, Lucknow.</p>
+              </div>
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-earth-asia text-emerald-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>Cross-Border Collaboration:</strong> Participated in India-Nepal Capacity Building Meeting for SMOs at Gorakhpur.</p>
+              </div>
+              <div class="flex items-center gap-3 bg-white/90 border border-teal-100 px-4 py-3 rounded-xl shadow-xs shrink-0 max-w-sm">
+                <i class="fa-solid fa-medal text-amber-600 text-base shrink-0"></i>
+                <p class="text-xs text-slate-700 font-medium leading-relaxed"><strong>NPTEL Medals:</strong> Awarded Gold Medal in MIYCN and Silver Medal in Health Promotion and Education.</p>
+              </div>
+            </div>
+          </div>
+          <div class="text-[10px] text-teal-800 text-center font-medium italic pt-1">✨ Hover over ticker cards to pause loop flow</div>
         </div>
 
-        <!-- Column 2: Evidence-Based Certifications (Fully Interactive with View Options for All, using certificates/ folder path) -->
+        <!-- Column 2: Evidence-Based Certifications (Fully Interactive with View Options for All) -->
         <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
           <div class="flex items-center justify-between pb-2 border-b border-slate-100">
             <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
