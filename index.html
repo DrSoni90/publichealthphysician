@@ -91,7 +91,7 @@
       display: flex;
       gap: 1.5rem;
       width: max-content;
-      animation: tickerScroll 35s linear infinite;
+      animation: tickerScroll 38s linear infinite;
     }
     .ticker-track:hover {
       animation-play-state: paused;
@@ -405,7 +405,7 @@
 
       </section>
 
-      <!-- ALIVE WINNING SECTION: ACHIEVEMENTS & CERTIFICATIONS (2 Columns with Infinite Running Ticker for Achievements) -->
+      <!-- ALIVE WINNING SECTION: ACHIEVEMENTS & CERTIFICATIONS (2 Columns) -->
       <section id="achievements-certs" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
         
         <!-- Column 1: Achievements & Milestones (Infinite Running Loop Flow) -->
@@ -531,6 +531,34 @@
                       class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
                 <span class="flex items-center"><i class="fa-solid fa-award text-indigo-600 mr-2 text-sm"></i> Basic Course in Biomedical Research (NMC)</span>
                 <span class="text-[10px] bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-indigo-600 group-hover:text-white transition">View PDF</span>
+              </button>
+            </li>
+            <li>
+              <button onclick="openCertModal('certificates/Diabetes_Prevention_Certificate.pdf', 'Prevention of Type 2 Diabetes Certificate (IDF)')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-emerald-600 mr-2 text-sm"></i> IDF Prevention of Type 2 Diabetes Course</span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-emerald-600 group-hover:text-white transition">View PDF</span>
+              </button>
+            </li>
+            <li>
+              <button onclick="openCertModal('certificates/OpenWHO_HEARTS_Certificate.pdf', 'OpenWHO HEARTS & NCD Management Certificate')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-teal-600 mr-2 text-sm"></i> OpenWHO HEARTS of NCD &amp; Primary Care</span>
+                <span class="text-[10px] bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-teal-600 group-hover:text-white transition">View PDF</span>
+              </button>
+            </li>
+            <li>
+              <button onclick="openCertModal('certificates/Mixed_Method_Research_Certificate.pdf', 'Mixed Method Research Certificate')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-purple-600 mr-2 text-sm"></i> Mixed Method Research (GMC &amp; AIIHPH)</span>
+                <span class="text-[10px] bg-purple-100 text-purple-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-purple-600 group-hover:text-white transition">View PDF</span>
+              </button>
+            </li>
+            <li>
+              <button onclick="openCertModal('certificates/NPTEL_Gold_Silver_Certificates.pdf', 'NPTEL Gold & Silver Medals Certificates')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-medal text-amber-500 mr-2 text-sm"></i> NPTEL Gold &amp; Silver Medals (MoE, Govt of India)</span>
+                <span class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-amber-600 group-hover:text-white transition">View PDF</span>
               </button>
             </li>
           </ul>
