@@ -19,33 +19,23 @@
     ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
-    /* Alive 3D Metallic Caduceus Breathing Animation */
-    .caduceus-badge-container {
-      position: relative;
-      width: 76px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .caduceus-svg-crisp {
+    /* Alive Red Caduceus DNA Emblem */
+    .alive-caduceus-svg {
       width: 100%;
       height: 100%;
-      animation: aliveCaduceusPulse 2.6s ease-in-out infinite alternate;
+      animation: pulse-alive 2s ease-in-out infinite alternate;
     }
-    @keyframes aliveCaduceusPulse {
-      0% {
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 3px rgba(220, 38, 38, 0.6));
-      }
-      50% {
-        transform: scale(1.05);
-        filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.95)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
-      }
-      100% {
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 3px rgba(220, 38, 38, 0.6));
-      }
+    @keyframes pulse-alive {
+      0% { transform: scale(0.96); filter: drop-shadow(0 0 3px rgba(255, 68, 68, 0.6)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(255, 30, 30, 0.95)); }
+      100% { transform: scale(0.96); filter: drop-shadow(0 0 3px rgba(255, 68, 68, 0.6)); }
+    }
+    .live-ping-dot {
+      animation: ping-dot 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes ping-dot {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
     }
 
     /* Radar Live Scan Sweep */
@@ -93,57 +83,41 @@
     <aside class="w-full lg:w-80 bg-[#004d61] text-white flex flex-col justify-between p-5 sm:p-6 lg:fixed lg:h-screen lg:overflow-y-auto z-20 shadow-xl">
       <div>
         
-        <!-- Header with Crisp Vector Red Metallic Caduceus -->
+        <!-- Header with Original Alive Red Caduceus Emblem -->
         <div class="flex flex-col items-center text-center pb-5 border-b border-[#006a80]">
-          <div class="mb-3 px-3.5 py-2.5 bg-slate-950/70 border border-red-500/40 rounded-2xl flex items-center gap-3 shadow-xl backdrop-blur-md">
-            
-            <div class="caduceus-badge-container">
-              <svg class="caduceus-svg-crisp" viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="mb-3 px-3 py-2 bg-slate-900/40 border border-red-500/30 rounded-2xl flex items-center gap-3 shadow-lg backdrop-blur-sm">
+            <div class="w-11 h-13 flex items-center justify-center relative">
+              <svg class="alive-caduceus-svg w-10 h-12" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="vRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ff5252" />
-                    <stop offset="30%" stop-color="#dc2626" />
-                    <stop offset="70%" stop-color="#991b1b" />
-                    <stop offset="100%" stop-color="#450a0a" />
-                  </linearGradient>
-                  <linearGradient id="vGlint" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
-                    <stop offset="50%" stop-color="#f87171" stop-opacity="0.5" />
-                    <stop offset="100%" stop-color="#991b1b" stop-opacity="0.1" />
+                  <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff4d4d" />
+                    <stop offset="50%" stop-color="#ef4444" />
+                    <stop offset="100%" stop-color="#990000" />
                   </linearGradient>
                 </defs>
-
-                <!-- Left Wing Layers -->
-                <path d="M112 42 C85 15, 30 18, 8 42 C30 38, 65 46, 92 58 C60 52, 32 58, 20 74 C45 68, 74 74, 98 86 C70 84, 48 92, 40 104 C64 96, 88 98, 108 102 Z" fill="url(#vRedGrad)" stroke="#fca5a5" stroke-width="0.8" />
-                <path d="M110 44 C88 20, 38 22, 16 42 C36 40, 68 48, 92 60 C66 56, 42 62, 30 76 C52 70, 78 76, 100 86 Z" fill="url(#vGlint)" opacity="0.6" />
-
-                <!-- Right Wing Layers -->
-                <path d="M128 42 C155 15, 210 18, 232 42 C210 38, 175 46, 148 58 C180 52, 208 58, 220 74 C195 68, 166 74, 142 86 C170 84, 192 92, 200 104 C176 96, 152 98, 132 102 Z" fill="url(#vRedGrad)" stroke="#fca5a5" stroke-width="0.8" />
-                <path d="M130 44 C152 20, 202 22, 224 42 C204 40, 172 48, 148 60 C174 56, 198 62, 210 76 C188 70, 162 76, 140 86 Z" fill="url(#vGlint)" opacity="0.6" />
-
-                <!-- Central Staff -->
-                <rect x="116" y="32" width="8" height="136" rx="4" fill="url(#vRedGrad)" stroke="#fca5a5" stroke-width="0.8" />
-                <path d="M116 168 L120 178 L124 168 Z" fill="url(#vRedGrad)" />
-                <circle cx="120" cy="26" r="11" fill="url(#vRedGrad)" stroke="#fca5a5" stroke-width="1" />
-                <circle cx="117" cy="22" r="3.5" fill="#ffffff" opacity="0.8" />
-                <rect x="113" y="36" width="14" height="4" rx="2" fill="url(#vRedGrad)" />
-
-                <!-- Left Entwined Snake -->
-                <path d="M96 60 C100 54, 110 56, 116 64 C104 72, 96 82, 104 94 C112 104, 134 108, 136 120 C138 132, 126 142, 116 152 C114 156, 120 162, 120 166 C114 160, 108 150, 110 140 C114 128, 130 120, 126 110 C122 100, 98 94, 94 82 C90 70, 92 64, 96 60 Z" fill="url(#vRedGrad)" stroke="#fca5a5" stroke-width="0.7" />
-                <ellipse cx="98" cy="58" rx="5" ry="3.5" transform="rotate(-15 98 58)" fill="url(#vRedGrad)" />
-                <circle cx="96.5" cy="57" r="1" fill="#ffffff" />
-
-                <!-- Right Entwined Snake -->
-                <path d="M144 60 C140 54, 130 56, 124 64 C136 72, 144 82, 136 94 C128 104, 106 108, 104 120 C102 132, 114 142, 124 152 C126 156, 120 162, 120 166 C126 160, 132 150, 130 140 C126 128, 110 120, 114 110 C118 100, 142 94, 146 82 C150 70, 148 64, 144 60 Z" fill="url(#vRedGrad)" stroke="#fca5a5" stroke-width="0.7" />
-                <ellipse cx="142" cy="58" rx="5" ry="3.5" transform="rotate(15 142 58)" fill="url(#vRedGrad)" />
-                <circle cx="143.5" cy="57" r="1" fill="#ffffff" />
+                <line x1="50" y1="20" x2="50" y2="105" stroke="url(#redGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow-red)" />
+                <circle cx="50" cy="18" r="5.5" fill="url(#redGrad)" filter="url(#glow-red)" />
+                <path d="M50 25 C32 12, 14 18, 8 30 C20 28, 34 30, 50 38" fill="none" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
+                <path d="M50 25 C68 12, 86 18, 92 30 C80 28, 66 30, 50 38" fill="none" stroke="url(#redGrad)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
+                <path d="M30 45 Q50 55 70 65 Q50 75 30 85 Q50 95 70 105" fill="none" stroke="#ff3333" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)" />
+                <path d="M70 45 Q50 55 30 65 Q50 75 70 85 Q50 95 30 105" fill="none" stroke="#ff4d4d" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3,3" filter="url(#glow-red)" />
+                <line x1="40" y1="52" x2="60" y2="52" stroke="#ff8080" stroke-width="1.8" />
+                <line x1="38" y1="65" x2="62" y2="65" stroke="#ff8080" stroke-width="1.8" />
+                <line x1="40" y1="78" x2="60" y2="78" stroke="#ff8080" stroke-width="1.8" />
+                <line x1="38" y1="91" x2="62" y2="91" stroke="#ff8080" stroke-width="1.8" />
+                <circle class="live-ping-dot" cx="50" cy="18" r="3" fill="#ffffff" />
               </svg>
             </div>
-
             <div class="text-left pr-1">
-              <span class="block text-[10px] uppercase font-bold tracking-widest text-white">Public Health</span>
-              <span class="block text-xs font-bold text-red-200 tracking-wide">Physician</span>
-              <span class="inline-flex items-center gap-1.5 text-[9px] text-red-300 font-semibold mt-0.5">
+              <span class="block text-[10px] uppercase font-bold tracking-widest text-white">Genomics &amp; Public Health</span>
+              <span class="inline-flex items-center gap-1 text-[9px] text-red-300 font-semibold mt-0.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span> Live Surveillance
               </span>
             </div>
