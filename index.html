@@ -76,6 +76,20 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Alive Winning Section Pulse & Shimmer */
+    .winning-pulse-card {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+      border: 1px solid #ccfbf1;
+      box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.15), 0 8px 10px -6px rgba(20, 184, 166, 0.1);
+      animation: winningCardGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes winningCardGlow {
+      0% { box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1); border-color: #99f6e4; }
+      50% { box-shadow: 0 12px 30px rgba(20, 184, 166, 0.28); border-color: #2dd4bf; }
+      100% { box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1); border-color: #99f6e4; }
+    }
+
     /* Modal Styling */
     .modal-active {
       opacity: 1 !important;
@@ -141,7 +155,7 @@
           </div>
           <div class="flex items-center gap-3 pt-1">
             <i class="fa-solid fa-envelope text-teal-300 w-4 text-center"></i>
-            <a href="url?id=0" class="hover:underline hover:text-white truncate transition">mahendra3632399@gmail.com</a>
+            <a href="mailto:mahendra3632399@gmail.com" class="hover:underline hover:text-white truncate transition">mahendra3632399@gmail.com</a>
           </div>
           <div class="flex items-center gap-3">
             <i class="fa-solid fa-phone text-teal-300 w-4 text-center"></i>
@@ -160,8 +174,8 @@
           <a href="#skills" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
             <i class="fa-solid fa-chart-pie w-4 text-teal-300"></i> Competency Matrix
           </a>
-          <a href="#achievements" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
-            <i class="fa-solid fa-award w-4 text-teal-300"></i> Achievements &amp; Pubs
+          <a href="#achievements-certs" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition text-teal-100 hover:text-white">
+            <i class="fa-solid fa-award w-4 text-teal-300"></i> Achievements &amp; Certifications
           </a>
         </nav>
       </div>
@@ -171,7 +185,7 @@
         <a href="Resume%20for%20github.pdf" target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold rounded-lg text-xs shadow transition active:scale-[0.98]">
           <i class="fa-solid fa-file-arrow-down"></i> View Official CV
         </a>
-        <a href="url?id=0" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
+        <a href="mailto:mahendra3632399@gmail.com" class="w-full flex items-center justify-center gap-2 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-xs transition border border-white/20 active:scale-[0.98]">
           <i class="fa-solid fa-paper-plane"></i> Contact Me
         </a>
       </div>
@@ -323,8 +337,8 @@
 
       </div>
 
-      <!-- Education, Publications & Verified Certifications -->
-      <section id="achievements" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <!-- Education & Publications -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         <!-- Education -->
         <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
@@ -356,35 +370,71 @@
           </ul>
         </div>
 
-        <!-- Verified Certifications -->
-        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3 md:col-span-2 xl:col-span-1">
-          <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
-            <i class="fa-solid fa-certificate"></i> Verified Certifications
-          </h3>
-          <ul class="text-xs text-slate-600 space-y-2">
+      </section>
+
+      <!-- ALIVE WINNING SECTION: ACHIEVEMENTS & CERTIFICATIONS (2 Columns) -->
+      <section id="achievements-certs" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        
+        <!-- Column 1: Achievements & Milestones (Alive Winning Card) -->
+        <div class="winning-pulse-card p-5 sm:p-6 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-teal-200/60">
+            <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
+              <i class="fa-solid fa-trophy text-amber-500 animate-bounce"></i> Achievements &amp; Milestones
+            </h3>
+            <span class="text-[10px] bg-teal-600 text-white px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider shadow-sm">
+              Featured Wins
+            </span>
+          </div>
+          <ul class="text-xs text-slate-700 space-y-3 list-disc list-inside">
+            <li><strong>Guinness World Record Title:</strong> Achieved for "Most viewers of an Artificial Intelligence in Healthcare lesson livestream on YouTube" (Feb 2026).</li>
+            <li><strong>Polio Containment Investigation:</strong> Led epidemiological investigations following VDPV3 detection (13 nucleotides) during Environmental Sewage Sampling.</li>
+            <li><strong>State Consultation Presenter:</strong> Presenter at the State Level Sensitization Cum Consultation Meeting focusing on Strengthening Immunization Data Systems at Varanasi, U.P.</li>
+            <li><strong>Divisional Review Contributor:</strong> Contributed to the 2025 performance feedback divisional meeting chaired by AD Medical &amp; Health Services, Lucknow.</li>
+            <li><strong>Cross-Border Collaboration:</strong> Participated in the International Cross-Border Capacity Building Meeting for SMOs from India and Nepal at Gorakhpur.</li>
+            <li><strong>NPTEL Medals:</strong> Awarded Gold Medal in "Maternal Infant Young Child Nutrition" and Silver Medal in "Basics of Health Promotion and Education Intervention".</li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Evidence-Based Certifications (Fully Interactive View Options) -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <h3 class="font-bold text-xs sm:text-sm text-[#004d61] flex items-center gap-2 uppercase tracking-wide">
+              <i class="fa-solid fa-certificate text-teal-600"></i> Evidence-Based Certifications
+            </h3>
+            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-semibold">
+              Verified Credentialing
+            </span>
+          </div>
+          <ul class="text-xs text-slate-600 space-y-2.5">
             <li>
-              <!-- Direct Click Trigger for Modal -->
               <button onclick="openCertModal('National%20science%20day%20celebration.pdf', 'National Science Day Celebration Certificate')" 
-                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-1.5 rounded-lg hover:bg-teal-50/70 border border-transparent hover:border-teal-200">
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
                 <span class="flex items-center"><i class="fa-solid fa-file-pdf text-red-500 mr-2 text-sm"></i> National Science Day Certificate</span>
-                <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-medium group-hover:bg-teal-600 group-hover:text-white transition">View</span>
+                <span class="text-[10px] bg-teal-100 text-teal-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-teal-600 group-hover:text-white transition">View PDF</span>
               </button>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-amber-500 mr-2"></i> AI in Healthcare (NBEMS - 96%)</span>
-              <span class="text-[10px] text-slate-400 font-medium">Verified</span>
+            <li>
+              <button onclick="openCertModal('NBEMS%20-%20AI_Healthcare_Certificate.pdf', 'AI in Healthcare Certificate (NBEMS)')" 
+                      class="w-full text-left text-[#004d61] hover:text-teal-600 font-semibold flex items-center justify-between group transition p-2 rounded-xl hover:bg-teal-50/70 border border-slate-100 hover:border-teal-200 shadow-xs">
+                <span class="flex items-center"><i class="fa-solid fa-award text-amber-500 mr-2 text-sm"></i> AI in Healthcare (NBEMS - 96%)</span>
+                <span class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-semibold group-hover:bg-amber-600 group-hover:text-white transition">View PDF</span>
+              </button>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-teal-600 mr-2"></i> Infectious Disease Modelling</span>
-              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
+            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
+              <span class="flex items-center"><i class="fa-solid fa-award text-teal-600 mr-2"></i> Mathematical Modelling for Infectious Diseases (NIHFW &amp; ICMR-NITV)</span>
+              <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-[#004d61] mr-2"></i> ArcView GIS Spatial Analysis</span>
-              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
+            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
+              <span class="flex items-center"><i class="fa-solid fa-award text-blue-600 mr-2"></i> eCourse on Non-Communicable Diseases (Grade A+, PHFI)</span>
+              <span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
             </li>
-            <li class="flex items-center justify-between text-slate-700 p-1.5">
-              <span><i class="fa-solid fa-award text-blue-500 mr-2"></i> WHO OpenWHO Epidemic Control</span>
-              <span class="text-[10px] text-slate-400 font-medium">Certified</span>
+            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
+              <span class="flex items-center"><i class="fa-solid fa-award text-[#004d61] mr-2"></i> ArcView GIS Spatial Analysis (WHO)</span>
+              <span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
+            </li>
+            <li class="flex items-center justify-between text-slate-700 p-2 bg-slate-50/80 rounded-xl border border-slate-100">
+              <span class="flex items-center"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Basic Course in Biomedical Research (NMC - 75%)</span>
+              <span class="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full font-semibold">Certified</span>
             </li>
           </ul>
         </div>
